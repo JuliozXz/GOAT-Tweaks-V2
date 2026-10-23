@@ -1,0 +1,42 @@
+{
+  "name": "goat-hub-service",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@11.25.0",
+  "engines": { "node": ">=24.0.0 <25" },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome lint src tests vite.config.ts playwright.config.ts",
+    "format:check": "biome format src tests vite.config.ts playwright.config.ts",
+    "format": "biome format --write src tests vite.config.ts playwright.config.ts",
+    "test": "vitest run",
+    "test:launcher": "powershell.exe -NoProfile -File tests/powershell/launcher.tests.ps1",
+    "test:inventory": "powershell.exe -NoProfile -File tests/powershell/inventory.tests.ps1",
+    "test:e2e": "node scripts/playwright.mjs test",
+    "test:browser:install": "node scripts/playwright.mjs install chromium --only-shell --no-remove",
+    "tauri": "tauri",
+    "catalog:report": "node scripts/catalog-report.mjs"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "2.12.4",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@biomejs/biome": "2.6.2",
+    "@playwright/test": "1.64.1",
+    "@tauri-apps/cli": "2.12.4",
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.5",
+    "vitest": "5.0.5"
+  }
+}

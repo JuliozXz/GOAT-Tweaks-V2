@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-23",
+  "appVersion": "0.1.0",
+  "unitTestsPassed": 20,
+  "unitFiles": 4,
+  "playwrightPassed": 14,
+  "launcherAssertionsPS51": 14,
+  "launcherAssertionsPS7": 14,
+  "inventoryAssertionsPS51": 27,
+  "inventoryAssertionsPS7": 27,
+  "frontendBuild": "passed",
+  "portableFreshInstall": {
+    "pathContainsSpaces": true,
+    "reused": 0,
+    "independentStore": true,
+    "downloaded": 56,
+    "ignoreScripts": true,
+    "frozenLockfile": true
+  },
+  "portableBuild": "passed",
+  "portableLauncherAssertions": 14,
+  "nativeBuild": "blocked: Cargo, rustc, MSVC, Windows SDK not detected",
+  "nativeRuntime": "not tested",
+  "ciWorkflow": "prepared; YAML/parser checks only; never dispatched",
+  "gitCloneRemote": "not executed: no repository URL or publication",
+  "published": false,
+  "catalogRecords": 41,
+  "executableTweaks": 0,
+  "hardwareGainsMeasured": 0
+}

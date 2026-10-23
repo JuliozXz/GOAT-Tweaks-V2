@@ -1,0 +1,31 @@
+node_modules/
+node_modules.initial-cache/
+.pnpm-store/
+.pnpm-cache/
+.playwright/
+dist/
+src-tauri/target/
+src-tauri/gen/
+test-results/
+playwright-report/
+.env
+.env.*
+!.env.example
+*.log
+.auth/
+.runtime/
+.portability-check/
+.vs/
+__pycache__/
+*.pfx
+*.p12
+*.pem
+*.key
+# Local setup audit contains machine paths and downloaded research/cache artifacts.
+# Keep on this machine; app builds and project skills do not depend on it.
+skill-audit-2026-10-23/
+# Historical machine-specific execution evidence stays local. Share sanitized summaries.
+docs/validation/
+# Optional local skill: upstream declares MIT but no complete license notice was located.
+# Preserve locally; do not redistribute until its notice is verified.
+.agents/skills/vercel-react-best-practices/

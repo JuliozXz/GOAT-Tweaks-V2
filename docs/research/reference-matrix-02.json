@@ -1,0 +1,4049 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-10-23",
+  "purpose": "Investigação técnica; não é catálogo executável nem endosso de eficácia.",
+  "scope": {
+    "remoteCodeExecuted": false,
+    "toolsInstalled": false,
+    "systemModified": false,
+    "thirdPartyCodeCopiedIntoProduct": false,
+    "hardwareValidation": false,
+    "sourceTreesFetched": true,
+    "allSourceFilesAudited": false
+  },
+  "limitations": [
+    "Listagem recursiva integral de nomes/blobSHAs não equivale a leitura integral.",
+    "Arquivos grandes foram recebidos completos no conector, porém somente seções explicitamente indicadas foram lidas.",
+    "Duas saídas agregadas excederam limite de exibição; a rede Ultimate foi relida integralmente; as demais leituras grandes permanecem marcadas parciais.",
+    "config/tweaks.json retornou strings multilinha na representação textual e JSON.parse dessa representação falhou; não se conclui defeito do arquivo original sem inspeção dos bytes raw. Inspeção das seções foi textual.",
+    "Nenhum workflow/teste de terceiros executado; comentários de issues, binários e dependências transitivas não auditados.",
+    "Documentação Microsoft com view WindowsServer2025-ps exige verificar disponibilidade/campos no Windows cliente alvo.",
+    "Resultados da revisão estática são decisões de engenharia, não benchmarks nem demonstração de dano no host."
+  ],
+  "repositories": [
+    {
+      "repo": "FR33THYFR33THY/Ultimate",
+      "full_name": "FR33THYFR33THY/Ultimate",
+      "archived": false,
+      "disabled": false,
+      "default_branch": "main",
+      "pushed_at": "2026-10-11T02:58:48Z",
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "html_url": "https://github.com/FR33THYFR33THY/Ultimate",
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "recursiveTreeTruncated": false,
+      "treeUrl": "https://api.github.com/repos/FR33THYFR33THY/Ultimate/git/trees/a0a33a57078434201f582b0db5107dcbb502292a?recursive=1",
+      "filesListed": 108,
+      "fullReadFiles": 14,
+      "partialReadFiles": 3,
+      "licenseAssessment": "LICENSE começa com MIT, avisos e lista de componentes de terceiros. API GitHub classifica NOASSERTION; não foi tratada como MIT abrangente dos binários.",
+      "recentCommits": [
+        {
+          "sha": "a0a33a57078434201f582b0db5107dcbb502292a",
+          "date": "2026-10-11T02:58:38Z",
+          "message": "Update 29 Power Plan.ps1\n\n- fix for 'disable if you've been away, when should windows require you to sign in again?'\n\nset like this for desktop or handheld devices with no password. if user is mid app or game and device is set to sleep, windows will make you sign in on wake up. it's nice to just get straight back into the app or game instead of signing in."
+        },
+        {
+          "sha": "b7efad7e5ff0da21d2a68e0e7376ac5a4e839fe7",
+          "date": "2026-10-11T02:15:36Z",
+          "message": "Update 22 Control Panel Settings.ps1\n\n- show pinned in start menu"
+        },
+        {
+          "sha": "c50c82d7745ab4e5e9d68b25828a09e70bc9134e",
+          "date": "2026-10-11T01:56:16Z",
+          "message": "Update 1 Bios Check.ps1 & 7 To Bios.ps1\n\n- fix for going to bios"
+        }
+      ],
+      "issueSearch": {
+        "query": "repo:FR33THYFR33THY/Ultimate is:issue sort:updated-desc",
+        "limit": 4,
+        "results": [
+          {
+            "number": 1,
+            "url": "https://github.com/FR33THYFR33THY/Ultimate/issues/1",
+            "title": "not an issue",
+            "scope": "corpo retornado lido; comentários/histórico completo não consultados; alegações não reproduzidas"
+          }
+        ]
+      },
+      "files": [
+        {
+          "path": "1 Check/1 Bios Check.ps1",
+          "blobSha": "54a4c25d97f003ecff0d0ff14fdf7e72f8cb1b29",
+          "sizeBytes": 2319,
+          "inspection": "read-full"
+        },
+        {
+          "path": "1 Check/2 Storage Check.ps1",
+          "blobSha": "8c05aa1d1dd6994432ecd98a1a79172490bf1bee",
+          "sizeBytes": 1223,
+          "inspection": "read-full"
+        },
+        {
+          "path": "1 Check/3 Ram Check.ps1",
+          "blobSha": "3559cea7d867e2c3227e82356de3eaf639bc7444",
+          "sizeBytes": 1468,
+          "inspection": "read-full"
+        },
+        {
+          "path": "1 Check/4 Gpu Check.ps1",
+          "blobSha": "2370b0e5a12ed1cde9309608fe1b9ab4cdd5815d",
+          "sizeBytes": 1532,
+          "inspection": "read-full"
+        },
+        {
+          "path": "1 Check/5 Storage Ram Cpu Test & Bench.ps1",
+          "blobSha": "cdea3e62f596a74b5275d51eab64df44d05f84d3",
+          "sizeBytes": 2746,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "1 Check/6 Gpu Test & Bench.ps1",
+          "blobSha": "a0242b6982a4c0704e7ea557f58baa67dcf85787",
+          "sizeBytes": 1924,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "2 Refresh/1 Factory Reset.ps1",
+          "blobSha": "3d9cc5476609879b68b8ea103f325ac15353a86a",
+          "sizeBytes": 36,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "2 Refresh/2 Account Local.ps1",
+          "blobSha": "0edae70bd0d2a8206b5de56bc775109e2a13a84c",
+          "sizeBytes": 24,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "2 Refresh/3 Reinstall.ps1",
+          "blobSha": "4cb73c09c01e9afea328c5cab0cdc3a189a77e7d",
+          "sizeBytes": 2024,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "2 Refresh/4 Autounattend.ps1",
+          "blobSha": "e938a4d0106b263d7584545fd476f83e5300962a",
+          "sizeBytes": 9075,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "2 Refresh/5 Updates Drivers Block.ps1",
+          "blobSha": "4606811faff912bf2645c640f9abe92246aaddfd",
+          "sizeBytes": 9532,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "2 Refresh/6 Network Driver.ps1",
+          "blobSha": "028b1957cc942186c9ff4a22a12d5c6a4a84c8e3",
+          "sizeBytes": 847,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "2 Refresh/7 To Bios.ps1",
+          "blobSha": "c66d20658103b2832ea53683d00070bff2d219f4",
+          "sizeBytes": 824,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "3 Setup/1 BitLocker.ps1",
+          "blobSha": "2565634b571660109b25015a12e800a09e8f6f20",
+          "sizeBytes": 1589,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "3 Setup/10 Edge Settings.ps1",
+          "blobSha": "abf1ff53b4a4a92bcd6f00a5a05619c0e2ee21d9",
+          "sizeBytes": 4089,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "3 Setup/11 Store Settings.ps1",
+          "blobSha": "4e2379b36db05abd1c05257730d16f45713d9ff5",
+          "sizeBytes": 3390,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "3 Setup/12 Updates Pause.ps1",
+          "blobSha": "82ea298b153bb86d700b5d4e887a84d0c5c63dd8",
+          "sizeBytes": 1721,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "3 Setup/2 Memory Compression.ps1",
+          "blobSha": "75a605f781f0753b681db3116c94c16effd9e96e",
+          "sizeBytes": 1588,
+          "inspection": "read-full"
+        },
+        {
+          "path": "3 Setup/3 Convert Home To Pro.ps1",
+          "blobSha": "b6cda9dbbcc6e0e8a8976344eed5e74d41f4fec3",
+          "sizeBytes": 966,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "3 Setup/4 Keys.ps1",
+          "blobSha": "136577bbb05a139d3cb4fce4969b95dfa1a6195e",
+          "sizeBytes": 74,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "3 Setup/5 Activation.ps1",
+          "blobSha": "c8d69a9cb30fce0781dfb795d216413fb52f648d",
+          "sizeBytes": 38,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "3 Setup/6 Date Language Region Time.ps1",
+          "blobSha": "39ae079a9bdfa88eb9254005ca7f0f53b55fec85",
+          "sizeBytes": 39,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "3 Setup/7 Startup Apps.ps1",
+          "blobSha": "9ca3ccaa47d20f7801d22802a5cc28a7bcbb3a1f",
+          "sizeBytes": 39,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "3 Setup/8 Startup Apps.ps1",
+          "blobSha": "9307161647d7bc6bafa8fd49c5aadf01320a3924",
+          "sizeBytes": 52,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "3 Setup/9 Background Apps.ps1",
+          "blobSha": "4d05ddfc4efbeca1b7ff346139a0936ba54c9b9e",
+          "sizeBytes": 2126,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "4 Installers/1 Installers.ps1",
+          "blobSha": "69ef30434a8eefd77b8cf142616008c421d7896f",
+          "sizeBytes": 44566,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "4 Installers/2 MSI Afterburner.ps1",
+          "blobSha": "7eff97ced4848ba9b0320f974c10fadff1bdc483",
+          "sizeBytes": 78351,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "5 Graphics/1 Driver Clean.ps1",
+          "blobSha": "37c6aeba5dcc85a81b311ebb34eef173441fd166",
+          "sizeBytes": 10278,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "5 Graphics/10 Msi Mode.ps1",
+          "blobSha": "efe83a9c07f0335e1786eb6fddf1eaa88d36a4a5",
+          "sizeBytes": 2819,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "5 Graphics/11 DirectX.ps1",
+          "blobSha": "f521816a5403dbc8da2bc6a12f7240d3c641fb82",
+          "sizeBytes": 2344,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "5 Graphics/12 C++.ps1",
+          "blobSha": "e8ee6c7cacb6b8908ba395f2084b22fd19bd5bd3",
+          "sizeBytes": 4360,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "5 Graphics/13 Resolution Refresh Rate.ps1",
+          "blobSha": "5de18d9a57f919d10d51e2a014c0e054836be6cb",
+          "sizeBytes": 35,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "5 Graphics/14 Hags Windowed.ps1",
+          "blobSha": "ddacb1e6c625c0fc22073fdadb4ba19748b6adfd",
+          "sizeBytes": 52,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "5 Graphics/2 Driver Updated Install.ps1",
+          "blobSha": "7e5f656ab301bc81ba3a7b1b65c2d621c822824e",
+          "sizeBytes": 3795,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "5 Graphics/3 Driver Updated Install & Settings.ps1",
+          "blobSha": "504072ace5f60f9b6014244364edd32c3e898889",
+          "sizeBytes": 28153,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "5 Graphics/4 Driver Debloat Install & Settings.ps1",
+          "blobSha": "0d2a2144019454ba588f69c9ac334b9925e98e15",
+          "sizeBytes": 36468,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "5 Graphics/5 Nvidia Settings.ps1",
+          "blobSha": "4fcb10819c863e85c0b243a35495aa60917042a4",
+          "sizeBytes": 16333,
+          "inspection": "read-selected-sections",
+          "scope": "linhas filtradas de download/Registro/importação e101-210 do perfil; arquivo recebido378linhas; não leitura integral"
+        },
+        {
+          "path": "5 Graphics/6 Amd Settings.ps1",
+          "blobSha": "688601188d275dee0cf8769e563f669e6c15ec9e",
+          "sizeBytes": 11575,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "5 Graphics/7 Intel Settings.ps1",
+          "blobSha": "2b21f9e2af1f5a55b6cd0f402cdec5e6d1f66bf4",
+          "sizeBytes": 2845,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "5 Graphics/8 Hdcp.ps1",
+          "blobSha": "a0b9f7d92ebce35f175159671b7ca6bec6ca1797",
+          "sizeBytes": 2394,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "5 Graphics/9 P0 State.ps1",
+          "blobSha": "ebca1ce22ec5b4f27f5c0b69c79b3aa3655ffa1d",
+          "sizeBytes": 2568,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/1 Start Menu Taskbar.ps1",
+          "blobSha": "d4e49dc6e1e5eb8ab52ace1c93d5c7b91bfe81e1",
+          "sizeBytes": 22096,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/10 Gamemode.ps1",
+          "blobSha": "e626d954970a5f00bd453eb6ec8ba0e143cf6e0c",
+          "sizeBytes": 43,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/11 Pointer Precision.ps1",
+          "blobSha": "7c9a2bf5ce69255b68cc15a4c548848c0093588b",
+          "sizeBytes": 55,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/12 Scaling.ps1",
+          "blobSha": "c11f0d0716b6d818e0ebfbd3495905773c5f0cda",
+          "sizeBytes": 44,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/13 Bloatware.ps1",
+          "blobSha": "ecfbf1c05286e7469a9fb1664674ca226980a361",
+          "sizeBytes": 16799,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/14 Bloatware Legacy Apps Check.ps1",
+          "blobSha": "dcd81d6cde1bdb01186aa6618e37b7f77d0b4d28",
+          "sizeBytes": 771,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/15 Bloatware Legacy Features Check.ps1",
+          "blobSha": "13a9eaf33787f3de38e64530c8ded05a498556c1",
+          "sizeBytes": 764,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/16 Bloatware UWP Apps Check.ps1",
+          "blobSha": "1175a6d3488acb9926f8ad92a2bd5fae3f24a512",
+          "sizeBytes": 735,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/17 Bloatware UWP Features Check.ps1",
+          "blobSha": "c6ace8f51b8e3df338f76d7bd78e7e2084b5b6b2",
+          "sizeBytes": 782,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/18 Bloatware TaskMgr Check.ps1",
+          "blobSha": "54b331f94883dbd7f2e6ffc911f199722b83f833",
+          "sizeBytes": 23,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/19 Gamebar.ps1",
+          "blobSha": "01b171deba02d16b50a9a0edf314742a7b559d3d",
+          "sizeBytes": 8856,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/2 Start Menu Layout.ps1",
+          "blobSha": "000d480280a2649804f8f8a2feb0146a660b6c0b",
+          "sizeBytes": 2871,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/20 Edge & WebView.ps1",
+          "blobSha": "1786a3e521340d8708980cb0bea3f0b0d56920a9",
+          "sizeBytes": 10325,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/21 Notepad Settings.ps1",
+          "blobSha": "b9f19eed33ee83bfe46904f434a2a21c0285f52f",
+          "sizeBytes": 2284,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/22 Control Panel Settings.ps1",
+          "blobSha": "ae93b47e185a311132dbdd572ebe09aaadba58b8",
+          "sizeBytes": 111062,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/23 Sound.ps1",
+          "blobSha": "1d1ab87619ef901aff32848436c84639b631a69a",
+          "sizeBytes": 25,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/24 Loudness EQ.ps1",
+          "blobSha": "ecd90e7fcff2b992bad89ac35889a4f4e34f1236",
+          "sizeBytes": 1688,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/25 Device Manager Power Savings & Wake.ps1",
+          "blobSha": "d2908107de902f9d7b5a0d4d87eeca8b218a547d",
+          "sizeBytes": 10558,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/26 Network Adapter Power Savings & Wake.ps1",
+          "blobSha": "6d38ad29b96ac64d514c63d387207cbf35081c20",
+          "sizeBytes": 4791,
+          "inspection": "read-full"
+        },
+        {
+          "path": "6 Windows/27 Network IPv4 Only.ps1",
+          "blobSha": "78b1b861fe6577f6e799cdfaa703633152e6d43d",
+          "sizeBytes": 2629,
+          "inspection": "read-full"
+        },
+        {
+          "path": "6 Windows/28 Write Cache Buffer Flushing.ps1",
+          "blobSha": "33d53815d2d4c3dec4b0a66ddf6f3c86301db626",
+          "sizeBytes": 3076,
+          "inspection": "read-full"
+        },
+        {
+          "path": "6 Windows/29 Power Plan.ps1",
+          "blobSha": "54dd284236e7d4bc7b7cfb8fd1db82b44164b3c6",
+          "sizeBytes": 18718,
+          "inspection": "read-selected-sections",
+          "scope": "linhas filtradas por comandos powercfg/Registro/Start-Process; arquivo recebido284linhas; não leitura integral"
+        },
+        {
+          "path": "6 Windows/3 Start Menu Shortcuts.ps1",
+          "blobSha": "037dfeb340171a252765761b2e534b9e468edfe5",
+          "sizeBytes": 2228,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/30 Timer Resolution.ps1",
+          "blobSha": "cc1d862bfb5c3ff7b1f9e61046fa84e8baf9ed1c",
+          "sizeBytes": 11049,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/31 UAC.ps1",
+          "blobSha": "0fa00f579e1e3b5555c8e2d3593684025fcfbf60",
+          "sizeBytes": 1324,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/32 Core Isolation.ps1",
+          "blobSha": "3e871034b3abc89a64ae5f763859ff5678fe2c21",
+          "sizeBytes": 69,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/33 Defender Optimize.ps1",
+          "blobSha": "65b150dab54cd54833cc7f6380fb4cf69c74ae19",
+          "sizeBytes": 24470,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/34 Autoruns Startup Tasks & Apps Check.ps1",
+          "blobSha": "6c91178b41f1825d51f70c1c0903d32fc14a3958",
+          "sizeBytes": 5958,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/35 Cleanup.ps1",
+          "blobSha": "4c1bc1f9a6caefbf6f726f9c3b1c61d2e3765332",
+          "sizeBytes": 1741,
+          "inspection": "read-full"
+        },
+        {
+          "path": "6 Windows/36 Restore Point.ps1",
+          "blobSha": "11569665e10d881a046dcbcec4e816d52a34b606",
+          "sizeBytes": 1281,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/4 Context Menu.ps1",
+          "blobSha": "41d173984b5ab2c82227b2c5bab0ef1e212ca982",
+          "sizeBytes": 5463,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/5 Theme Black.ps1",
+          "blobSha": "94ce7dfc99f8b8f11d9cf2aa02f03addc532e38f",
+          "sizeBytes": 3359,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/6 Signout Lockscreen Wallpaper Black.ps1",
+          "blobSha": "bec3fd1417d6e0799e98491ba2f68ce2cd2eebaa",
+          "sizeBytes": 2961,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/7 User Account Pictures Black.ps1",
+          "blobSha": "05b1d659efbc1e4829eacc9b394138521a32768c",
+          "sizeBytes": 2182,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/8 Widgets.ps1",
+          "blobSha": "33f7c2a73247ce3ab2af1e9939bc7a37d0e50eb8",
+          "sizeBytes": 1836,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "6 Windows/9 Copilot.ps1",
+          "blobSha": "7bcc221a79f2e20660eea969f6f3e1a58d93db0b",
+          "sizeBytes": 2559,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "7 Hardware/1 Scaling Higher No Accel.ps1",
+          "blobSha": "d706e3dacf8acdc94582d70f639678e9fb990f58",
+          "sizeBytes": 12910,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "7 Hardware/2 Background Polling Rate Cap.ps1",
+          "blobSha": "8e19e33a643019496bc996f05c4578e790f553ac",
+          "sizeBytes": 1349,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "7 Hardware/3 Mouse Polling Rate Test.ps1",
+          "blobSha": "415a1538729e0e9ddc52202e264be2e3f9792a96",
+          "sizeBytes": 3669,
+          "inspection": "read-full"
+        },
+        {
+          "path": "7 Hardware/4 Controller Overclock.ps1",
+          "blobSha": "e1c66edbabd0fcf717ad5883886e568e9be6e443",
+          "sizeBytes": 2583,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "7 Hardware/5 Controller Polling Rate Test.ps1",
+          "blobSha": "a0797659c3fc0bbe83f4ea4425f22efc6b0d5b8c",
+          "sizeBytes": 2157,
+          "inspection": "read-full"
+        },
+        {
+          "path": "7 Hardware/6 Monitor Optimization.ps1",
+          "blobSha": "8704eb1de50da978bf22b242e4d1fd497ad4be93",
+          "sizeBytes": 1147,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "7 Hardware/7 Network Bufferbloat Test.ps1",
+          "blobSha": "9952d6dabb1b664a0bf43b5c8d2d20f01b0d908e",
+          "sizeBytes": 58,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "7 Hardware/8 PC Build Guide.ps1",
+          "blobSha": "1acde5e768922311c527266097a9612440705962",
+          "sizeBytes": 59,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/1 Defender.ps1",
+          "blobSha": "1f281b58eae603d2cbdc19048327cd41f98400b5",
+          "sizeBytes": 30432,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/10 Priority.ps1",
+          "blobSha": "0324f335294ba73efd1b56a4a9462ea3c519534c",
+          "sizeBytes": 3772,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/11 Mpo.ps1",
+          "blobSha": "d5f311174c85d7470e73197d90f788bd490d8350",
+          "sizeBytes": 1745,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/12 Hardware Legacy Flip.ps1",
+          "blobSha": "59d2e2ca604368ccf62d1954d327aed8477f8bd1",
+          "sizeBytes": 2251,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/13 Hardware Composed Independent Flip.ps1",
+          "blobSha": "0467555b4d89310441d09d238c1942b9a15bc1cc",
+          "sizeBytes": 1303,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/14 Ulps.ps1",
+          "blobSha": "c7043f7ec8d99f3e44ad769d5542a5bba133da7c",
+          "sizeBytes": 2498,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/15 Driver Whql Secure Boot Bypass.ps1",
+          "blobSha": "2578c0bfdc6c352a8cb7f783d09d57621b8a7b2e",
+          "sizeBytes": 1353,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/16 Keyboard Shortcuts.ps1",
+          "blobSha": "da391bee6872f4175b96e8ce79fb68948ecf69df",
+          "sizeBytes": 2561,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/17 Services.ps1",
+          "blobSha": "9362fa79ec43d307937fb0a266ac608c9b0dec4b",
+          "sizeBytes": 57245,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/18 Start Search Shell Mobsync.ps1",
+          "blobSha": "bbabba2169d8c0e1b3112a9eeaa2e60dfb891c41",
+          "sizeBytes": 7015,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/19 NVME Faster Driver.ps1",
+          "blobSha": "f63934f7d890d1e6a65e012b2f091ab91557d9ee",
+          "sizeBytes": 2717,
+          "inspection": "read-full"
+        },
+        {
+          "path": "8 Advanced/2 Firewall.ps1",
+          "blobSha": "8148b6c28c5053f5763e1916979db4416e4e62b5",
+          "sizeBytes": 1783,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/3 Spectre Meltdown.ps1",
+          "blobSha": "4c5b68c990b966852fe31947c7e9dc1bb4475b37",
+          "sizeBytes": 1737,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/4 Data Execution Prevention.ps1",
+          "blobSha": "fc3cb4e1d29ca90b82e82d0b12b76ad55f197e47",
+          "sizeBytes": 1277,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/5 File Download Security Warning.ps1",
+          "blobSha": "8d89b244b351bb2f2f1583123b77d5a61f2aa965",
+          "sizeBytes": 1917,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/6 MMAgent Features.ps1",
+          "blobSha": "f9f765b4729b1ff0fc3f2c2d4e7c036342ed364e",
+          "sizeBytes": 3101,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/7 ReBar Force.ps1",
+          "blobSha": "e0bf5df2203c444ff5c96df91a889fead99592c2",
+          "sizeBytes": 13092,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "8 Advanced/8 Smt Ht.ps1",
+          "blobSha": "4e9366c0581c8a33182ac40a4d8ac420e4fd9190",
+          "sizeBytes": 4244,
+          "inspection": "read-full"
+        },
+        {
+          "path": "8 Advanced/9 Core 1 Thread 1.ps1",
+          "blobSha": "c3e3461414cbe208be50465bf4e66a35abf15159",
+          "sizeBytes": 3420,
+          "inspection": "read-full"
+        },
+        {
+          "path": "AllowScripts.cmd",
+          "blobSha": "32d1cf0a2ef85fbb17212238918415d0c93fdeac",
+          "sizeBytes": 1951,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "IWR.ps1",
+          "blobSha": "f5ab6290294bf82ff8de1baea13ee11bca2c7ac4",
+          "sizeBytes": 1566,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "LICENSE",
+          "blobSha": "dae111adf1c05f9e57f1f763378c2646efa06995",
+          "sizeBytes": 14185,
+          "inspection": "read-selected-sections",
+          "scope": "linhas1-48; licença MIT completa no início, lista de terceiros não inteiramente examinada"
+        },
+        {
+          "path": "README.md",
+          "blobSha": "ea4ddee01e2ab73100f6c687b67b389dac15fe72",
+          "sizeBytes": 696,
+          "inspection": "listed-only"
+        }
+      ]
+    },
+    {
+      "repo": "FR33THYFR33THY/WinSux",
+      "full_name": "FR33THYFR33THY/WinSux",
+      "archived": false,
+      "disabled": false,
+      "default_branch": "main",
+      "pushed_at": "2026-10-11T02:59:01Z",
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "html_url": "https://github.com/FR33THYFR33THY/WinSux",
+      "commit": "91adbfd63b7ed2eb5fcf0821fd53405a3cf63573",
+      "recursiveTreeTruncated": false,
+      "treeUrl": "https://api.github.com/repos/FR33THYFR33THY/WinSux/git/trees/91adbfd63b7ed2eb5fcf0821fd53405a3cf63573?recursive=1",
+      "filesListed": 8,
+      "fullReadFiles": 1,
+      "partialReadFiles": 3,
+      "licenseAssessment": "LICENSE começa com MIT, avisos e lista de componentes de terceiros. API GitHub classifica NOASSERTION; não foi tratada como MIT abrangente dos binários.",
+      "recentCommits": [
+        {
+          "sha": "91adbfd63b7ed2eb5fcf0821fd53405a3cf63573",
+          "date": "2026-10-11T02:58:55Z",
+          "message": "Update steptwo.ps1\n\n- fix for 'disable if you've been away, when should windows require you to sign in again?'\n\nset like this for desktop or handheld devices with no password. if user is mid app or game and device is set to sleep, windows will make you sign in on wake up. it's nice to just get straight back into the app or game instead of signing in."
+        },
+        {
+          "sha": "910ec3e3bbc03614db7cfc5ad989bf5efb0c51b3",
+          "date": "2026-10-11T02:15:46Z",
+          "message": "Update reg.reg\n\n- show pinned in start menu"
+        },
+        {
+          "sha": "c09d940cae80047fb2ba1e9a00137719c62dc374",
+          "date": "2026-10-10T06:52:36Z",
+          "message": "Update README.md"
+        }
+      ],
+      "issueSearch": {
+        "query": "repo:FR33THYFR33THY/WinSux is:issue sort:updated-desc",
+        "limit": 4,
+        "results": [
+          {
+            "number": 1,
+            "url": "https://github.com/FR33THYFR33THY/WinSux/issues/1",
+            "title": "After I used Winsux my windows desktop scaling %175.",
+            "scope": "corpo retornado lido; comentários/histórico completo não consultados; alegações não reproduzidas"
+          }
+        ]
+      },
+      "files": [
+        {
+          "path": "LICENSE",
+          "blobSha": "b765d7dbf5792387b93f80f1bfd7ee26c9242cab",
+          "sizeBytes": 4930,
+          "inspection": "read-selected-sections",
+          "scope": "linhas1-48; licença MIT completa no início, lista de terceiros não inteiramente examinada"
+        },
+        {
+          "path": "README.md",
+          "blobSha": "fd160132bb932d9a3aab92c70ca8d3cf839713d6",
+          "sizeBytes": 1311,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "WinSux/reg.reg",
+          "blobSha": "5724e7205231f107d72ae641b0825975b15142ff",
+          "sizeBytes": 54013,
+          "inspection": "read-selected-sections",
+          "scope": "comentários como índice e linhas278-285,1005-1024;1495linhas recebidas; não leitura integral"
+        },
+        {
+          "path": "WinSux/settimerresolutionservice.cs",
+          "blobSha": "312c5b433e37f3f7ee3335001fcde0db271ee8c5",
+          "sizeBytes": 8012,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "WinSux/start2.txt",
+          "blobSha": "1ad0ca85838113aac331377fb1a98ece6156efdd",
+          "sizeBytes": 6204,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "WinSux/stepone.ps1",
+          "blobSha": "c200c34d358ace53baeddc8011b8bb8e7c7c84c6",
+          "sizeBytes": 10859,
+          "inspection": "read-full"
+        },
+        {
+          "path": "WinSux/steptwo.ps1",
+          "blobSha": "7b4e2b78cc505287e0968005ad37af49e38cfc1a",
+          "sizeBytes": 67200,
+          "inspection": "read-selected-sections",
+          "scope": "comentários como índice e linhas579-721; 1228linhas recebidas; não leitura integral"
+        },
+        {
+          "path": "WinSux/winsux.ps1",
+          "blobSha": "4e9382347f33b8619f02aa3dc41dc60796ee026e",
+          "sizeBytes": 13234,
+          "inspection": "listed-only"
+        }
+      ]
+    },
+    {
+      "repo": "ChrisTitusTech/winutil",
+      "full_name": "ChrisTitusTech/winutil",
+      "archived": false,
+      "disabled": false,
+      "default_branch": "main",
+      "pushed_at": "2026-10-21T21:46:58Z",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "html_url": "https://github.com/ChrisTitusTech/winutil",
+      "commit": "2f0bdc8fca52e1ebe31a8d98216428061d3f8956",
+      "recursiveTreeTruncated": false,
+      "treeUrl": "https://api.github.com/repos/ChrisTitusTech/winutil/git/trees/2f0bdc8fca52e1ebe31a8d98216428061d3f8956?recursive=1",
+      "filesListed": 389,
+      "fullReadFiles": 5,
+      "partialReadFiles": 1,
+      "licenseAssessment": "MIT no LICENSE completo.",
+      "recentCommits": [
+        {
+          "sha": "2f0bdc8fca52e1ebe31a8d98216428061d3f8956",
+          "date": "2026-10-21T21:46:58Z",
+          "message": "fix(tweaks): move SvcHost split threshold out of the Services tweak (#5170)\n\n* fix(tweaks): move SvcHost split threshold out of the Services tweak\n\nThe Services tweak wrote SvcHostSplitThresholdInKB equal to total physical memory, which disables svchost service splitting. On some machines that leaves XboxGipSvc stuck on Starting (#5115), and the tweak had no undo for the value.\nWPFTweaksSvcHostSplitting now owns the write under Advanced Tweaks - CAUTION and restores the Windows client default (0x380000) on undo. A config test keeps the threshold write out of the Services tweak.\n\n* Document service splitting risks and default restore\n\n* Restore test header formatting after merge resolution\n\n* Document legacy service-host recovery and link the maintained guide\n\n* Link service-host splitting to its maintained guide section\n\n* docs: recommend svchost grouping for low-memory systems\n\n* fix(tweaks): persist svchost threshold as a DWORD\n\n---------\n\nCo-authored-by: Chris Titus <contact@christitus.com>"
+        },
+        {
+          "sha": "a3bdfcc1d6f7b22b771b7d0ecc561d9802239673",
+          "date": "2026-10-21T21:11:04Z",
+          "message": "fix(tweaks): skip Edge uninstall when the installer is absent (#5163)"
+        },
+        {
+          "sha": "ce1d6020b797cb783489528ab10d0dd861533a74",
+          "date": "2026-10-21T21:01:28Z",
+          "message": "Show O&O ShutUp10++ download size in progress label and tooltip (#5062)\n\n* Show O&O ShutUp10++ download size in progress label and tooltip\n\nThe ShutUp10 button silently downloads about 76 MB on every click. The\nprogress label now reads \"Downloading O&O ShutUp10++ (35% of 76 MB)\",\nfalling back to the plain percentage when the server sends no\nContent-Length. Save-WinUtilFile passes the total size to its progress\ncallback for that.\n\nButton-type tweaks get their Description as a tooltip, which no button\nhad before, and the ShutUp10 entry gains a Description that says what\nwill be downloaded and where it is saved.\n\n* Refresh O&O download estimate and use absolute test file URIs\n\n* Qualify O&O download size availability in the guide\n\n---------\n\nCo-authored-by: Chris Titus <contact@christitus.com>"
+        }
+      ],
+      "issueSearch": {
+        "query": "repo:ChrisTitusTech/winutil is:issue sort:updated-desc",
+        "limit": 4,
+        "results": [
+          {
+            "number": 5190,
+            "url": "https://github.com/ChrisTitusTech/winutil/issues/5190",
+            "title": "[Bug Report] - Some tweaks are not working on 26h2 : 26300.9457",
+            "scope": "corpo retornado lido; comentários/histórico completo não consultados; alegações não reproduzidas"
+          },
+          {
+            "number": 4861,
+            "url": "https://github.com/ChrisTitusTech/winutil/issues/4861",
+            "title": "[Feature Request] Spy Mocrsoft - Disable CDPUserSvc",
+            "scope": "corpo retornado lido; comentários/histórico completo não consultados; alegações não reproduzidas"
+          },
+          {
+            "number": 5187,
+            "url": "https://github.com/ChrisTitusTech/winutil/issues/5187",
+            "title": "[Feature Request] - Clean up summary with feature installs",
+            "scope": "corpo retornado lido; comentários/histórico completo não consultados; alegações não reproduzidas"
+          },
+          {
+            "number": 5115,
+            "url": "https://github.com/ChrisTitusTech/winutil/issues/5115",
+            "title": "[Bug Report] - XboxGipSvc Stuck On Start Pending",
+            "scope": "corpo retornado lido; comentários/histórico completo não consultados; alegações não reproduzidas"
+          }
+        ]
+      },
+      "files": [
+        {
+          "path": ".gitattributes",
+          "blobSha": "da0b45d5a2676aa897aa0fc0f062d13f19bc599e",
+          "sizeBytes": 158,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/CODEOWNERS",
+          "blobSha": "a4267d7b6a2ee0d0735e4ee5bc1733a27484ab4f",
+          "sizeBytes": 297,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/CODE_OF_CONDUCT.md",
+          "blobSha": "2b6db6ca00e1374045481c2f9db5bb031836e1c3",
+          "sizeBytes": 5225,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/CONTRIBUTING.md",
+          "blobSha": "06733b93470ad0efba49aa7639ff35285de8959b",
+          "sizeBytes": 6233,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/DISCUSSION_TEMPLATE/app-suggestion.yaml",
+          "blobSha": "e9839281cfaf1a8e82626147233ee8451dba990a",
+          "sizeBytes": 1095,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/FUNDING.yml",
+          "blobSha": "f78fabade956b9b8ed8ef79d4d6f378b8e4728be",
+          "sizeBytes": 72,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/bug_report.yaml",
+          "blobSha": "91132df5d52b973aa7683c3c772a2e48964b464b",
+          "sizeBytes": 2098,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/config.yml",
+          "blobSha": "47cf3129ad230627840bfdbfe83a3ac3792135cb",
+          "sizeBytes": 449,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/ISSUE_TEMPLATE/feature_request.yaml",
+          "blobSha": "205fe58c348ca92e08d70909e9bc1ead0a2952ba",
+          "sizeBytes": 934,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/PULL_REQUEST_TEMPLATE.md",
+          "blobSha": "ab4759b3fbf4442ae081b2ba960243d651108b15",
+          "sizeBytes": 593,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/READMEITALIAN.md",
+          "blobSha": "8d89d0799fd6ea26e97cccea5f6cfbbacda2aa5c",
+          "sizeBytes": 6882,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/SECURITY.md",
+          "blobSha": "79918bab395b86c498e6859fce1bab2b9edddfff",
+          "sizeBytes": 366,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/copilot-instructions.md",
+          "blobSha": "e5b78374885bbdd488f218614e09a31fc4af401c",
+          "sizeBytes": 119,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/dependabot.yml",
+          "blobSha": "b097d7b47bad0fdb7e3472e9886c17df633d3e15",
+          "sizeBytes": 196,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/release-drafter.yml",
+          "blobSha": "46aa268f5d8da0415d83d70556f0607be4962689",
+          "sizeBytes": 929,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/workflows/auto-merge-docs.yaml",
+          "blobSha": "defc7c66f545dee1d343a029081c5898e5cfd9fd",
+          "sizeBytes": 1057,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/workflows/close-discussion-on-pr.yaml",
+          "blobSha": "f383e7c203d5c91e3149cdab2e2924e79b28e3b3",
+          "sizeBytes": 1736,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/workflows/close-old-issues.yaml",
+          "blobSha": "b44017126db14e4adfabd0c968751e13cddc7a4b",
+          "sizeBytes": 1748,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/workflows/compile-check.yaml",
+          "blobSha": "f2953316ea1dc9a9748c293ee0904ea21217c4c3",
+          "sizeBytes": 587,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/workflows/docs.yaml",
+          "blobSha": "c1f1c2654586d217d02e0e78ba5f2886ae03e195",
+          "sizeBytes": 955,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/workflows/generate-title-screen.yaml",
+          "blobSha": "7e5f9e1ccee268a145160e1c0f8b1501d5864bec",
+          "sizeBytes": 6999,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/workflows/label-pr.yaml",
+          "blobSha": "5bf60fe9e637d4f7de9b66599358ecac6c6dfc83",
+          "sizeBytes": 1391,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/workflows/pre-release.yaml",
+          "blobSha": "26ca4deee2eaf771ba8734dbd7ec1a070246e774",
+          "sizeBytes": 4571,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/workflows/remove-winutil.yaml",
+          "blobSha": "7a3a958188aac0b3d36c52a49feef33dfb3f5c20",
+          "sizeBytes": 921,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/workflows/sponsors.yaml",
+          "blobSha": "c75c7cdbdb4549054138db12c23440ee55fb5d42",
+          "sizeBytes": 1278,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/workflows/triage-tools.yaml",
+          "blobSha": "99cd5d4bad0e1797d89f29e9613f0b62d73fd6aa",
+          "sizeBytes": 7704,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".github/workflows/unittests.yaml",
+          "blobSha": "a805041f1712e4a06be175ea4b628095e810d838",
+          "sizeBytes": 1633,
+          "inspection": "listed-only"
+        },
+        {
+          "path": ".gitignore",
+          "blobSha": "c1234289a80c8a91688e490af34be0cbaba227ea",
+          "sizeBytes": 238,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "AGENTS.md",
+          "blobSha": "9aa011b56f1c3afb34f8900dd31824d01cef44d8",
+          "sizeBytes": 17278,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "CLAUDE.md",
+          "blobSha": "57cf80f2de7984a949989b35f6f9defaa8af1873",
+          "sizeBytes": 23,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "Compile.ps1",
+          "blobSha": "82e85ea0463e7d5391a0ec9573f49db5967a0a41",
+          "sizeBytes": 1434,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "GEMINI.md",
+          "blobSha": "3f43b145b738dc64e5b46fb6e3fe21086a25057e",
+          "sizeBytes": 108,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "LICENSE",
+          "blobSha": "be8a1a82bcf58357213f359d91e363ed8de33c11",
+          "sizeBytes": 1074,
+          "inspection": "read-full"
+        },
+        {
+          "path": "README.md",
+          "blobSha": "340545e53eca780cbede8caa5c11803e67a2b6d6",
+          "sizeBytes": 5025,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "SPEC.md",
+          "blobSha": "30289b4d73eb9bcb15bfa4c3e25255f333e05502",
+          "sizeBytes": 8208,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "config/applications.json",
+          "blobSha": "c74da87b72aba620e2cd4accd2d6f38351883fc8",
+          "sizeBytes": 92428,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "config/appnavigation.json",
+          "blobSha": "5ccf396b0535f8c5f0940d557887bae5643a1a98",
+          "sizeBytes": 2621,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "config/appx.json",
+          "blobSha": "2c6f81c1eadf32dbec1dabc532d192f6e7fc46a8",
+          "sizeBytes": 11422,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "config/dns.json",
+          "blobSha": "da5349437b94266633d516dc3f13dc2508607995",
+          "sizeBytes": 2046,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "config/feature.json",
+          "blobSha": "2c32d2992bd27015a5259340accad5d8e7471306",
+          "sizeBytes": 12900,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "config/preset.json",
+          "blobSha": "852f0c7dfdfc5caf715b213926edd495be7a5988",
+          "sizeBytes": 1776,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "config/themes.json",
+          "blobSha": "426da696e4ea2404576bc3f31d3d2dd60608200b",
+          "sizeBytes": 4909,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "config/tweaks.json",
+          "blobSha": "776ded7d26170a35829864250525618b117698d2",
+          "sizeBytes": 69616,
+          "inspection": "read-selected-sections",
+          "scope": "índice de chaves e seções WPFTweaksSvcHostSplitting,Storage,DiskCleanup,IPv46,Teredo,DisableIPv6; linhas180-199,910-925,1155-1167,1183-1242 da representação do conector; não leitura integral"
+        },
+        {
+          "path": "docs/.dockerignore",
+          "blobSha": "e4a7692b42ef78f72b5e734aefac140dc7d2e922",
+          "sizeBytes": 48,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/.gitignore",
+          "blobSha": "60ee29e3ce4b6c3811e64ea1c80483c41c6d4f0c",
+          "sizeBytes": 253,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/Dockerfile",
+          "blobSha": "4cb7c850214d6441e7f4ead1c42c422202401c95",
+          "sizeBytes": 216,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/README.md",
+          "blobSha": "9b6e8234e0008916be9811c799a9cc48c5d773bc",
+          "sizeBytes": 3959,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/astro.config.mjs",
+          "blobSha": "942e17b201b00c3c11e73afa6e7562c5cf49cce1",
+          "sizeBytes": 3122,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/docker-compose.yml",
+          "blobSha": "ad068b0c0858bc3a2828bfd2be634f50989b0e39",
+          "sizeBytes": 302,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/package-lock.json",
+          "blobSha": "a52ee718c3d18e38c4c8063de131fe98bf94e067",
+          "sizeBytes": 258766,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/package.json",
+          "blobSha": "b5aee605f2a0bdae0048507918644456f3173b03",
+          "sizeBytes": 421,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/public/favicon.svg",
+          "blobSha": "791ca18c769110118d6826c9cc88d79da32d5382",
+          "sizeBytes": 3242,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/public/robots.txt",
+          "blobSha": "4b092e62cb0be6c821e40ec94671d3d53bf82462",
+          "sizeBytes": 82,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/public/social-preview.png",
+          "blobSha": "d80f4eb52515d6d048945f654630ca2d77a5aa18",
+          "sizeBytes": 71479,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/branding/navlogo.png",
+          "blobSha": "1ae83be0760b377491c4d06f8c48f7806dd56419",
+          "sizeBytes": 7987,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/branding/title-screen.png",
+          "blobSha": "1a15a8f39fc18604754ef34fc87862a5605759bf",
+          "sizeBytes": 175344,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/contributing/Commit-GHD.png",
+          "blobSha": "ea11d851df6f6ffd8b95f65a5c7d60e4de85615d",
+          "sizeBytes": 198236,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/contributing/Compile.png",
+          "blobSha": "464ac62198e7d8d89940af7598df1976cb04e644",
+          "sizeBytes": 12140,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/contributing/Discard-GHD.png",
+          "blobSha": "42c12c3c3be0e70c51d600ba95770c6e90b15f63",
+          "sizeBytes": 6968,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/contributing/Fork-Button-Dark.png",
+          "blobSha": "f5cd63ec600f0fffee9585ed9a9645ff96a8b5db",
+          "sizeBytes": 14063,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/contributing/Push-Commit.png",
+          "blobSha": "d8395373fa354e41cd87bd9ae0b0c9e1194dc8d8",
+          "sizeBytes": 79066,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/screenshots/config-tab-new.png",
+          "blobSha": "bc551727dd44309ac69057972f30f190f6166a89",
+          "sizeBytes": 68294,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/screenshots/install-pics/Collapse&ExpandCat.png",
+          "blobSha": "9756ea2494e1d46fa15aacbcaad03fceea6ae073",
+          "sizeBytes": 197520,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/screenshots/install-pics/Selected-Apps.png",
+          "blobSha": "22d6d3a6de5d698dd6c052ae873e55993ac70cdf",
+          "sizeBytes": 197343,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/screenshots/install-pics/clear-selected-apps.png",
+          "blobSha": "249c96f8930b45f1a61405063747b0e124fdc989",
+          "sizeBytes": 197297,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/screenshots/install-pics/installation&upgrade.png",
+          "blobSha": "94f2e96e057d11fcf030be1df09230e476ed0325",
+          "sizeBytes": 197437,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/screenshots/install-pics/show-installed-apps.png",
+          "blobSha": "ff51daae9079170475fed549a0894fac80ec6256",
+          "sizeBytes": 197347,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/screenshots/install-pics/uninstall-apps.png",
+          "blobSha": "7080f2d03e880158956e30c2866ceee794016f02",
+          "sizeBytes": 197277,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/screenshots/install-pics/upgrade-all.png",
+          "blobSha": "af5a262bf4ccb2bc11414874b6fdcb085dcd27ed",
+          "sizeBytes": 197311,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/screenshots/tweaks-tab-new.png",
+          "blobSha": "9d3858ffe5715db13c240d3d8934f442cc82be5a",
+          "sizeBytes": 152171,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/screenshots/updates-tab-new.png",
+          "blobSha": "45568da005e3033daec9144cec87576e9a6ffdde",
+          "sizeBytes": 96652,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/assets/screenshots/win11creator-tab-new.png",
+          "blobSha": "75486f891113e393497f9065bee8a556c8fd38bf",
+          "sizeBytes": 79490,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/components/CornerCard.astro",
+          "blobSha": "951c5f03d83e829ce73159b02a63573ee0cd2a8e",
+          "sizeBytes": 2752,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/components/Footer.astro",
+          "blobSha": "09c8eb0d26f52be89a18da0834edcca101697b62",
+          "sizeBytes": 2394,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/components/Header.astro",
+          "blobSha": "faf02ea027316aeeb89f5b99578938779a692ac3",
+          "sizeBytes": 9778,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/components/Hero.astro",
+          "blobSha": "182400319613f8920ed75001fcd5a6ff6be9ce8b",
+          "sizeBytes": 7653,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/components/ThemeProvider.astro",
+          "blobSha": "61a9180a98d871b0f5aaf756ba89adbb5a18e775",
+          "sizeBytes": 1468,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/components/YouTubeEmbed.astro",
+          "blobSha": "0b1ed563a5e88c091fe86e6bafd11a3e51857987",
+          "sizeBytes": 911,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content.config.ts",
+          "blobSha": "2139691b42e1db822a3e517e8245113c2d57f93f",
+          "sizeBytes": 900,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/architecture.mdx",
+          "blobSha": "7e11d54cb2d9942d62b352a29549ec73eaadf652",
+          "sizeBytes": 25030,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Features/DisableLegacyRecovery.mdx",
+          "blobSha": "68e6c9412689adf57d1f2ad46fa5cb03d40ee8b4",
+          "sizeBytes": 751,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Features/EnableLegacyRecovery.mdx",
+          "blobSha": "49d5b2d0050d1b83ee3d858ff416472db2fe0788",
+          "sizeBytes": 744,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Features/RegBackup.mdx",
+          "blobSha": "290adf3418c7e99340fa1c40813a98a7e1352759",
+          "sizeBytes": 1374,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Features/Sandbox.mdx",
+          "blobSha": "224b9a9568bb825b0a58d9baccd4e0023cd9d7d2",
+          "sizeBytes": 785,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Features/dotnet.mdx",
+          "blobSha": "ccf0b7b206438477bd84bdb1e9429a3d6ce60061",
+          "sizeBytes": 855,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Features/hyperv.mdx",
+          "blobSha": "a8d35b42724ef134a72a7ca25353329b39dd0394",
+          "sizeBytes": 712,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Features/legacymedia.mdx",
+          "blobSha": "3c5438682f98db826948575059d0a90146ee902e",
+          "sizeBytes": 743,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Features/nfs.mdx",
+          "blobSha": "0e3ad8d950666d18beae197059353e27b736e04a",
+          "sizeBytes": 1168,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Features/wsl.mdx",
+          "blobSha": "8ea94ed1505a923975776f0f079bf0fb56059122",
+          "sizeBytes": 940,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Fixes/Autologin.mdx",
+          "blobSha": "013cc78540bdf7dd8bbfa4081c51c0e5a0cf4daa",
+          "sizeBytes": 626,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Fixes/DISM.mdx",
+          "blobSha": "fb4a6f98522bc7e9ccbceb4e7a893319e4780b2c",
+          "sizeBytes": 3106,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Fixes/NTPPool.mdx",
+          "blobSha": "909afb08497438a90e90750d6fbb8972be8ae7da",
+          "sizeBytes": 958,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Fixes/Network.mdx",
+          "blobSha": "a67a459ddf07b2a58ff6abf6be25628a741c4869",
+          "sizeBytes": 522,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Fixes/Update.mdx",
+          "blobSha": "2ac0ee2f93a8bfa88d20173f1a209a6992f06eaa",
+          "sizeBytes": 16259,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Fixes/Winget.mdx",
+          "blobSha": "d8f5fec7062b8ee9e00bd9e5239aae5aca6281a5",
+          "sizeBytes": 670,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Legacy-Windows-Panels/Computer.mdx",
+          "blobSha": "a60b3d4998f4fa14bb1894a511f2f0f0c1e7d660",
+          "sizeBytes": 503,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Legacy-Windows-Panels/Control.mdx",
+          "blobSha": "8dde9abb7c03da2c190e7c7ec840bce74acf3b0e",
+          "sizeBytes": 485,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Legacy-Windows-Panels/Firewall.mdx",
+          "blobSha": "62475fe88d59e38c31e94534f3ec97b9798042ec",
+          "sizeBytes": 515,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Legacy-Windows-Panels/Mouse.mdx",
+          "blobSha": "ddd047ace9020a7b6c656909461ef7f7422aa100",
+          "sizeBytes": 490,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Legacy-Windows-Panels/Network.mdx",
+          "blobSha": "585449236328d69b1b47cea9845c54f45e5a5eec",
+          "sizeBytes": 498,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Legacy-Windows-Panels/Power.mdx",
+          "blobSha": "e5c3b9ebace5426d671f03cb454eefffd676dc67",
+          "sizeBytes": 484,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Legacy-Windows-Panels/Printer.mdx",
+          "blobSha": "2df2dcbc7697b58942bf04c569ed9f930212a20d",
+          "sizeBytes": 540,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Legacy-Windows-Panels/Programs.mdx",
+          "blobSha": "eaf7c19f5d1f3e354353896b07657f42d5aa3325",
+          "sizeBytes": 505,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Legacy-Windows-Panels/Region.mdx",
+          "blobSha": "f8c83d8278b9f16a804ff2efe47cd42f8da5009a",
+          "sizeBytes": 471,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Legacy-Windows-Panels/Restore.mdx",
+          "blobSha": "4aceefe6a646d06762fceb346e3edb328f25b732",
+          "sizeBytes": 492,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Legacy-Windows-Panels/Security.mdx",
+          "blobSha": "79bc7204e8f1155b09ee9792c5fc990dea3e3c01",
+          "sizeBytes": 510,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Legacy-Windows-Panels/Sound.mdx",
+          "blobSha": "089c3f1d8f6060a8acfc75d02d062c0c6e28bd66",
+          "sizeBytes": 487,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Legacy-Windows-Panels/System.mdx",
+          "blobSha": "28897bb799ad5c296d870b55bff3a5498ed16474",
+          "sizeBytes": 494,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Legacy-Windows-Panels/Timedate.mdx",
+          "blobSha": "ca83011427ef0e9817bd415008990e654ccbfba6",
+          "sizeBytes": 491,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Powershell-Profile-Powershell-7--Only/InstallPSProfile.mdx",
+          "blobSha": "ae2a9882a2462b2d26a37b5beb52d35cce44db44",
+          "sizeBytes": 3205,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Powershell-Profile-Powershell-7--Only/UninstallPSProfile.mdx",
+          "blobSha": "b44ce1a5f5ff12168d6db50a8ce3487a4f0c965e",
+          "sizeBytes": 1792,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/features/Remote-Access/SSHServer.mdx",
+          "blobSha": "15187b3574bf638011f8c99f2a74c05ea54c3f25",
+          "sizeBytes": 490,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/issue-triage.mdx",
+          "blobSha": "060c3698e90288fac354684dfb5b27c8eeb98c21",
+          "sizeBytes": 1864,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/BatteryPercentage.mdx",
+          "blobSha": "e0e9026deb8f01a17ec5919f0788afa5fd7e1ffe",
+          "sizeBytes": 1321,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/BingSearch.mdx",
+          "blobSha": "b5b20add6e0d340d74d06188da708dedeb08898e",
+          "sizeBytes": 1210,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/DarkMode.mdx",
+          "blobSha": "32c9129a143fba591bb4ec90a509a4eabb0ccee9",
+          "sizeBytes": 1850,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/DetailedBSoD.mdx",
+          "blobSha": "ff4dce9cbecc4518cfda95b778d6af87ec91460d",
+          "sizeBytes": 1423,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/DisableLockscreen.mdx",
+          "blobSha": "9a3ba6085a2bf1e1b441243c6b36d4486c4d3aea",
+          "sizeBytes": 1269,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/GameMode.mdx",
+          "blobSha": "b3751cf8cdd7e242fc8c05e4941b631b9f720418",
+          "sizeBytes": 1451,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/HiddenFiles.mdx",
+          "blobSha": "9b0c681d2e65378ab13723ad2f3bffdf40828af4",
+          "sizeBytes": 1385,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/HideSettingsHome.mdx",
+          "blobSha": "92bf38b9eb9607c9a1f725757c76599c13e60438",
+          "sizeBytes": 1242,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/LoginBlur.mdx",
+          "blobSha": "3d657bb77110b6782bd8182d9dc1009ba40b0ac9",
+          "sizeBytes": 1241,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/LongPaths.mdx",
+          "blobSha": "053b0392fefb79157b668f527719dae751292358",
+          "sizeBytes": 1233,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/MouseAcceleration.mdx",
+          "blobSha": "f7130b39da9e32c7b785d483a8da6387d73561d7",
+          "sizeBytes": 1657,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/MultiplaneOverlay.mdx",
+          "blobSha": "1f9e33c6db6d9a7f5f39f128f1a6b81c39703843",
+          "sizeBytes": 2218,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/NewOutlook.mdx",
+          "blobSha": "cf0fdd40a72588d27dddc6b8e065a461493c1fa4",
+          "sizeBytes": 2028,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/NumLock.mdx",
+          "blobSha": "995e3dfc3fc15ea19b3f53067e47c45a7001146e",
+          "sizeBytes": 1425,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/S3Sleep.mdx",
+          "blobSha": "9f3b22b0e25f2837b3e305447bad86aa5e55d4cf",
+          "sizeBytes": 1316,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/Scrollbars.mdx",
+          "blobSha": "afd83ea352ebefb4e2fc300301e3e5c74de1563a",
+          "sizeBytes": 1333,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/ShowExt.mdx",
+          "blobSha": "c10012f099366c8f03a8be8e5a66161592225b44",
+          "sizeBytes": 1432,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/StandbyFix.mdx",
+          "blobSha": "5245183b57872c7cb362566d963894dd25de2b52",
+          "sizeBytes": 1332,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/StartMenuRecommendations.mdx",
+          "blobSha": "70e9a434bc194174f57fcb2368159e8710ce8398",
+          "sizeBytes": 2123,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/StickyKeys.mdx",
+          "blobSha": "5eb1ede3bb7f1f854b4c47b23650497abd34dce5",
+          "sizeBytes": 1203,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/TaskView.mdx",
+          "blobSha": "a614d8a98b4bc8009ace10e396398c629b4695a4",
+          "sizeBytes": 1209,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/TaskbarAlignment.mdx",
+          "blobSha": "485c22a93fa4b1880ca3277894f662ebe413084b",
+          "sizeBytes": 1436,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/TaskbarSearch.mdx",
+          "blobSha": "27aab398e881795bbd8fdf3108c6c4635bf000ae",
+          "sizeBytes": 1192,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/VerboseLogon.mdx",
+          "blobSha": "0fea88392bf2bb08ff6643ace32a7957471e86bd",
+          "sizeBytes": 1205,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Customize-Preferences/WindowSnapping.mdx",
+          "blobSha": "ccd584b27238c7ba8d698fe93338f98f2d7c4f35",
+          "sizeBytes": 1193,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/Activity.mdx",
+          "blobSha": "3dd43cc26d47c8b82e45211ff0e78d4fe081f1c1",
+          "sizeBytes": 1689,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/ConsumerFeatures.mdx",
+          "blobSha": "27e023092dea8d723e95ef53f942f6f7b78e3d6b",
+          "sizeBytes": 1260,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/DeleteTempFiles.mdx",
+          "blobSha": "19d64cc456364fc7d662970bdd740dc6d1265524",
+          "sizeBytes": 861,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/DeliveryOptimization.mdx",
+          "blobSha": "3474c9f27feb5830063de215d0e16880d734ad28",
+          "sizeBytes": 1304,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/DisableBitLocker.mdx",
+          "blobSha": "1c4d550b82dc3944ed82e8bbf171ed0adbc04330",
+          "sizeBytes": 632,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/DisableExplorerAutoDiscovery.mdx",
+          "blobSha": "ceea9ce1a5dbaba4d50b749ee927ea9675ea01db",
+          "sizeBytes": 2566,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/DisableStoreSearch.mdx",
+          "blobSha": "2df4cd2323a82fdbd927e7f61294d22be1630d73",
+          "sizeBytes": 986,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/DiskCleanup.mdx",
+          "blobSha": "9e64c73be507157184831b26d3bf3218c1face95",
+          "sizeBytes": 701,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/EndTaskOnTaskbar.mdx",
+          "blobSha": "249032b666d1b13885beac0c4ebb2c32597a5da0",
+          "sizeBytes": 1272,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/Hiber.mdx",
+          "blobSha": "c1c2edfd5d01a7294bc0f04ee7fa055e78969a20",
+          "sizeBytes": 1663,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/Location.mdx",
+          "blobSha": "2c736f4a69bd0ffdedc54c66fbc63856b0273326",
+          "sizeBytes": 1719,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/PreventDeviceMetadataFromNetwork.mdx",
+          "blobSha": "f406bc711928cc864e56667fc28bab7bb29b9e78",
+          "sizeBytes": 1405,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/RestorePoint.mdx",
+          "blobSha": "56bacadaebc9af807176a544bf14b8f266f3d864",
+          "sizeBytes": 1645,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/RevertStartMenu.mdx",
+          "blobSha": "6e0be33336784ad2463cbd9311f165de4cf7e8e3",
+          "sizeBytes": 1411,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/Services.mdx",
+          "blobSha": "59548e0687015c5bef9151b82c4b59c83bb54d89",
+          "sizeBytes": 1682,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/Telemetry.mdx",
+          "blobSha": "ebf7ac8e318889e1e2e69215d62a3f3ac0f8871c",
+          "sizeBytes": 4675,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/WPBT.mdx",
+          "blobSha": "f7633f43e33c4b00b6504068ce49f2178ff7622c",
+          "sizeBytes": 1531,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/Essential-Tweaks/Widget.mdx",
+          "blobSha": "74771a28407b665f4fdb32fbd784642fe954eff7",
+          "sizeBytes": 993,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/BlockAdobeNet.mdx",
+          "blobSha": "dce1965a21216b30279fbbabe0613800c76a0701",
+          "sizeBytes": 1413,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/BraveDebloat.mdx",
+          "blobSha": "747de7105b1072c00db301e4bd38a1eb4df13309",
+          "sizeBytes": 3570,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/DisableBGapps.mdx",
+          "blobSha": "74b0215bab70db9cf810db053cabb67209c38732",
+          "sizeBytes": 1329,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/DisableIPv6.mdx",
+          "blobSha": "f31d411e65b169c750ae029ec501a52cb95dcec1",
+          "sizeBytes": 1267,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/DisableNotifications.mdx",
+          "blobSha": "53f77c36afbf95103208766d51b8df17ab5cf3cb",
+          "sizeBytes": 1444,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/DisableWarningForUnsignedRdp.mdx",
+          "blobSha": "2717a103512674607c6d89967632923984720fa2",
+          "sizeBytes": 1592,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/Display.mdx",
+          "blobSha": "1ef7d3874462e3b250a347cca8cc1934609a358d",
+          "sizeBytes": 3816,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/EdgeDebloat.mdx",
+          "blobSha": "b83e7a47de75c66662268bd14a4e09f2281818cf",
+          "sizeBytes": 4646,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/IPv46.mdx",
+          "blobSha": "04d27f28c767e88db444b0b1fe48f73d70006f5d",
+          "sizeBytes": 1307,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/LogiBlock.mdx",
+          "blobSha": "74be075350690dc022422ce217c83e0bddd6612b",
+          "sizeBytes": 1828,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/OOSUbutton.mdx",
+          "blobSha": "229e2c610e51b3e3b459e1afda0af33b52918bcc",
+          "sizeBytes": 1131,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/RazerBlock.mdx",
+          "blobSha": "66a288dc5eb1532f6fb6c5e24c047ffa030ee33a",
+          "sizeBytes": 1920,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/RemoveEdge.mdx",
+          "blobSha": "b634667e15168d5b7d28208d643c3ee04a29462c",
+          "sizeBytes": 1573,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/RemoveHomeAndGallery.mdx",
+          "blobSha": "24b50556d81a3b0d905606d857328be35d889bed",
+          "sizeBytes": 1758,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/RemoveOneDrive.mdx",
+          "blobSha": "7eddf1e2bc223ec35a9b3e571473c53152a459dc",
+          "sizeBytes": 2003,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/ReservedStorage.mdx",
+          "blobSha": "78ec5b615dc13c3746dd0bde847b851b00fe3b10",
+          "sizeBytes": 1001,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/RightClickMenu.mdx",
+          "blobSha": "9118dfac9f9330b1f4dfa63406b7ef839de89dad",
+          "sizeBytes": 1069,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/Storage.mdx",
+          "blobSha": "5f47a5a299a6108195d0052c3d45ae48028d508f",
+          "sizeBytes": 1174,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/Teredo.mdx",
+          "blobSha": "529d15277d0924e9ec28c941069d91ab16959545",
+          "sizeBytes": 1442,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/UTC.mdx",
+          "blobSha": "358c58a12c33ee2d6d10dabdec5c06a2dd55747a",
+          "sizeBytes": 1247,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/WindowsAI.mdx",
+          "blobSha": "0569514b971d9a544a50610e62afbd23557f76e6",
+          "sizeBytes": 2232,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/code-reference/tweaks/z--Advanced-Tweaks---CAUTION/changedns.mdx",
+          "blobSha": "5020c70662f819c4a189185d4549cce2982a3c37",
+          "sizeBytes": 592,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/contributing.mdx",
+          "blobSha": "cbc3e0be8eb0f10bf787fd2635162f6e6aae8b9a",
+          "sizeBytes": 6301,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/faq.mdx",
+          "blobSha": "c04e78f30a0423e15e89ae299b581f007dc3ab51",
+          "sizeBytes": 10691,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/guides/application.mdx",
+          "blobSha": "31afe3dc4f161fa4085bfa1e79450534a4d12417",
+          "sizeBytes": 4918,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/guides/automation.mdx",
+          "blobSha": "f9659dcbc650c0fad389dce21aa01d2f6da633af",
+          "sizeBytes": 3692,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/guides/features.mdx",
+          "blobSha": "7d024175d264e8177e711efa9ba7afee95fc1e1a",
+          "sizeBytes": 2742,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/guides/getting-started.mdx",
+          "blobSha": "b6293c7c63f330b8e4aa77e392b02e9a17831435",
+          "sizeBytes": 9118,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/guides/index.mdx",
+          "blobSha": "180e2db03e6be3b9c6d53581982507d401701d50",
+          "sizeBytes": 5417,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/guides/tweaks.mdx",
+          "blobSha": "f1086c1716063ba95f60af0e52e635316b6de31c",
+          "sizeBytes": 8849,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/guides/updates.mdx",
+          "blobSha": "c02c2b134f187a1b5f60fb960ec5b1a66e2aea1f",
+          "sizeBytes": 2722,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/guides/win11creator.mdx",
+          "blobSha": "99e81147a51ea811c96ad10991ddbce5db19ecf6",
+          "sizeBytes": 10143,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/index.mdx",
+          "blobSha": "fdded475895af5694b68c67cdede152ba2f2ef99",
+          "sizeBytes": 10377,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/content/docs/knownissues.mdx",
+          "blobSha": "5cc59455a591579513a007c5b14e2c45395b155d",
+          "sizeBytes": 2021,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/site-links.ts",
+          "blobSha": "dc2f31aa64e0f12ae14248e0df166101b63485cf",
+          "sizeBytes": 267,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/styles/fonts.css",
+          "blobSha": "5c3bbf2a3c6f2a459b4f9c07950d02c23875ce74",
+          "sizeBytes": 321,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/src/styles/theme.css",
+          "blobSha": "4a716a2e0a5a9b357ff192c39e7a77a1265ce4d5",
+          "sizeBytes": 11449,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "docs/tsconfig.json",
+          "blobSha": "8bf91d3bb997dfb0ea4a592b849545656f0fcebe",
+          "sizeBytes": 109,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Add-SelectedAppsMenuItem.ps1",
+          "blobSha": "6b6b6335c6d26d442b12719d18dbfba9347a18fe",
+          "sizeBytes": 2854,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Close-WinUtilRunspacePool.ps1",
+          "blobSha": "dce6106644c92c51db17226f6654f6464b0d04d2",
+          "sizeBytes": 4984,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Complete-WinUtilPackageRun.ps1",
+          "blobSha": "8fa535a85c5aa264d63c2ed91eb3068ee8bda035",
+          "sizeBytes": 2548,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Find-AppsByNameOrDescription.ps1",
+          "blobSha": "c94fc4512601b2d8e86a0166dbfbbf1458082f33",
+          "sizeBytes": 6924,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Find-TweaksByNameOrDescription.ps1",
+          "blobSha": "f47db60a9a2899bd81a55433f7dfbc266f5efdc2",
+          "sizeBytes": 15963,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilAppEntryHandlers.ps1",
+          "blobSha": "999a2a38cd3f7d452e8acf9366256954a9ab457a",
+          "sizeBytes": 2634,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilDNSBenchmark.ps1",
+          "blobSha": "d1e4a936cc82b89217409a9a4a5d006cf24ffdf0",
+          "sizeBytes": 2837,
+          "inspection": "read-full"
+        },
+        {
+          "path": "functions/private/Get-WinUtilEntryToolTip.ps1",
+          "blobSha": "6cde230d424fc37b327b1c5458dcd994099568b4",
+          "sizeBytes": 702,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilEnvironmentReport.ps1",
+          "blobSha": "038d460b996fad36c2644ab348ff8d5a7d3ddfe4",
+          "sizeBytes": 6809,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilEnvironmentReportLogsPath.ps1",
+          "blobSha": "ef7a166425774f3823af9a65825d1a5e09668705",
+          "sizeBytes": 596,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilInstalledAPPX.ps1",
+          "blobSha": "6f74ff8c27d478f5aec58d0dc5197f680431b430",
+          "sizeBytes": 853,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilPackageLogSummary.ps1",
+          "blobSha": "bd138cd0a4c049f3a9af35a2bda740b127beddd4",
+          "sizeBytes": 1030,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilRecentLogs.ps1",
+          "blobSha": "4ae53db8cf528b4523e4ed2f727a7fa12426b694",
+          "sizeBytes": 1300,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilRegistryComboState.ps1",
+          "blobSha": "91e1fb2190c663a91a2fcb205fb46fa58cec939a",
+          "sizeBytes": 1333,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilRegistryComboValue.ps1",
+          "blobSha": "bc2a280c50a269cb193c632aff697d6679f8fa16",
+          "sizeBytes": 907,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilRunspacePoolLock.ps1",
+          "blobSha": "ca38071934dc2bac7011e12c10c00015f8828a21",
+          "sizeBytes": 445,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilSelectedPackages.ps1",
+          "blobSha": "9b23b2f55f3c780081cd8926539682f0f5673c7e",
+          "sizeBytes": 2056,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilToggleStatus.ps1",
+          "blobSha": "efb581fe740d04bec4d912f38b9be351d4db569a",
+          "sizeBytes": 1581,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilTweakDisplayName.ps1",
+          "blobSha": "e981f4441d30098be4e002ab84a5c9f8cce00bf0",
+          "sizeBytes": 899,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilTweaksStateReport.ps1",
+          "blobSha": "a51884c85ab054e35b19c42f4e24c6c5dbae7b62",
+          "sizeBytes": 2704,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Get-WinUtilVariables.ps1",
+          "blobSha": "8a41666136942cef755e124031af1d4ce6584835",
+          "sizeBytes": 686,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Initialize-InstallAppArea.ps1",
+          "blobSha": "67e8a3dbd29c6c00dac52571652f2fcaf06a8087",
+          "sizeBytes": 2433,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Initialize-InstallAppEntry.ps1",
+          "blobSha": "7635b7fce6793291f7908311a77a8109c1c60f08",
+          "sizeBytes": 5192,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Initialize-InstallCategoryAppList.ps1",
+          "blobSha": "272c031fa327c07c100bb6a9122328339366d1e0",
+          "sizeBytes": 5687,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Initialize-WinUtilInstallTabControls.ps1",
+          "blobSha": "2acc68c666a73fdd2b93cb953454fa8a054b64be",
+          "sizeBytes": 1317,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Initialize-WinUtilRunspacePool.ps1",
+          "blobSha": "3cd52ea2e48ea843daef76f5c19c48cb23a789e5",
+          "sizeBytes": 1244,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Initialize-WinUtilTabContent.ps1",
+          "blobSha": "51cabcf5d2361840334f7a1ce17b0a780f4fd21d",
+          "sizeBytes": 2330,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Initialize-WinUtilTaskbarOverlayAssets.ps1",
+          "blobSha": "5aa7b6d6e34218a628e5a7da119a2fda60ac1ad0",
+          "sizeBytes": 1107,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Install-WinUtilAPPX.ps1",
+          "blobSha": "6de1d14d5ea70d076fc69c308af502ab8b008825",
+          "sizeBytes": 3887,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Install-WinUtilChoco.ps1",
+          "blobSha": "6c9d603db84b850dc5efa7b0b58b07d80e5a146b",
+          "sizeBytes": 1789,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Install-WinUtilProgramChoco.ps1",
+          "blobSha": "1cc182494c4ff44f4e3a4565fc5da8e7bdf00dbf",
+          "sizeBytes": 4413,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Install-WinUtilProgramWinget.ps1",
+          "blobSha": "8ffc6a56c75a310ef7d37c8d5a24e1cb403bf9fe",
+          "sizeBytes": 12411,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Install-WinUtilWinget.ps1",
+          "blobSha": "8f23a05ed01f4afadff2372b761351fd27de6760",
+          "sizeBytes": 810,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilAppCategoryChip.ps1",
+          "blobSha": "e08a5d65109fff36c60a84a28f5a31fb5a1f17ba",
+          "sizeBytes": 652,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilAssets.ps1",
+          "blobSha": "819b414e73bfc7667c85a74ac35814687548df46",
+          "sizeBytes": 8914,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilCloseRequest.ps1",
+          "blobSha": "32f6eee802c96bdf987c91435471506642756438",
+          "sizeBytes": 4528,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilCurrentSystem.ps1",
+          "blobSha": "cb23f552f4d6e0ea24e668d1ef9bf63207ffd0b3",
+          "sizeBytes": 7700,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilExplorerUpdate.ps1",
+          "blobSha": "7a4b17041b20caa135a0af39c7d93243dad74953",
+          "sizeBytes": 1370,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilFeatureInstall.ps1",
+          "blobSha": "c1d4f7b7903ef1a405bb3f2cdbbb4dd87c2462d1",
+          "sizeBytes": 1908,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilFontScaling.ps1",
+          "blobSha": "daa5872aa78de7b5bc1d4f356224cdc2afee9c88",
+          "sizeBytes": 2655,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilISO.ps1",
+          "blobSha": "c6ca1390ff8638a2ed8469ca0e78485d8e94288d",
+          "sizeBytes": 39355,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilISOScript.ps1",
+          "blobSha": "2dc46d5689d885c35649160dd77ce142be972d9d",
+          "sizeBytes": 43770,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilISOUSB.ps1",
+          "blobSha": "ea3654c57675d5aa0943aa8edc12d2042cb2fc63",
+          "sizeBytes": 13953,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilInstallPSProfile.ps1",
+          "blobSha": "50168de21c76156adefe9c286d46155bbb1cf9d8",
+          "sizeBytes": 2807,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilSSHServer.ps1",
+          "blobSha": "2d46207b8ca2a64f02e3db65799141bc2f81b11a",
+          "sizeBytes": 4611,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilScript.ps1",
+          "blobSha": "59a98541318f093dab33747e4391c7a89d024414",
+          "sizeBytes": 2484,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilSponsors.ps1",
+          "blobSha": "f9ee94135f39faa14cabb81f4fc7d65c6926da81",
+          "sizeBytes": 294,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilTweaks.ps1",
+          "blobSha": "abbdd3322bd6734ffc51e906553166c117db1c49",
+          "sizeBytes": 4483,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinUtilUninstallPSProfile.ps1",
+          "blobSha": "4c8720b3f87fa1ad35e1ef584bad836e605f97fc",
+          "sizeBytes": 1389,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Invoke-WinutilThemeChange.ps1",
+          "blobSha": "adeba9fb0dd167a043480ac4f8ae631e4e66ec46",
+          "sizeBytes": 7323,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Measure-WinUtilStep.ps1",
+          "blobSha": "6487a5d93e46e9a62ff7ce10b76e86b7f0cd2fc8",
+          "sizeBytes": 3520,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/New-WinUtilFossBadge.ps1",
+          "blobSha": "adff2eb5cd77a70643b7babd5b1ea04dcca6fa95",
+          "sizeBytes": 2316,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/New-WinUtilSessionState.ps1",
+          "blobSha": "5eb24e1b2cb70116e1de9fe59b055dd2e863ff48",
+          "sizeBytes": 2164,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Register-WinUtilRunspaceCleanup.ps1",
+          "blobSha": "f499bc54d8f909609f45f9d44808badf293808ac",
+          "sizeBytes": 3919,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Remove-WinUtilAPPX.ps1",
+          "blobSha": "8efffea89e4834b908acb95dd84464db6c6a3f3d",
+          "sizeBytes": 1243,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Remove-WinUtilProvisionedAPPX.ps1",
+          "blobSha": "6ad67735877bfb0e73600b049d762c90e2ace304",
+          "sizeBytes": 2472,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Reset-WPFCheckBoxes.ps1",
+          "blobSha": "e9a40c9fd39ec21c182396b3327bfcb909c14b3a",
+          "sizeBytes": 3455,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Save-WinUtilFile.ps1",
+          "blobSha": "0d7ee4a235564c2b03a6fa6342a7df68018e409b",
+          "sizeBytes": 1877,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Set-WinUtilAppCategoryFilter.ps1",
+          "blobSha": "b01475c938a8db8cf53cf62da2bb12c4a2696526",
+          "sizeBytes": 1755,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Set-WinUtilDNS.ps1",
+          "blobSha": "12159c9e63b5484739ec45b31cbf04ea8f5993b8",
+          "sizeBytes": 8166,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Set-WinUtilRegistry.ps1",
+          "blobSha": "2892d8ace29c525a186b8aabc2319430ef8254ab",
+          "sizeBytes": 3804,
+          "inspection": "read-full"
+        },
+        {
+          "path": "functions/private/Set-WinUtilRegistryComboState.ps1",
+          "blobSha": "544b8c1edaf1f09d9af3ba4c687c2129cba46a85",
+          "sizeBytes": 3437,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Set-WinUtilService.ps1",
+          "blobSha": "46d9232abdfe6c1d630a8edeacf1592b4b44b59c",
+          "sizeBytes": 2193,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Set-WinUtilTaskbarItem.ps1",
+          "blobSha": "ea2b6d43cb495ea40fa655b608300154efe0bd40",
+          "sizeBytes": 3607,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Show-CustomDialog.ps1",
+          "blobSha": "9ae289e6e05c9efbd98d21a4dca3285151d74ca0",
+          "sizeBytes": 13276,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Show-WinUtilMessage.ps1",
+          "blobSha": "4ed8f4ae8ab152d79a40551f7ae5a2a2fd7ed774",
+          "sizeBytes": 1538,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Start-WinUtilAssetRendering.ps1",
+          "blobSha": "17157126036039a461429a76bae086fb901eacd6",
+          "sizeBytes": 1571,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Start-WinUtilBackgroundQueue.ps1",
+          "blobSha": "eb6b9fec6b046be1a3336fc25014d0bc88854067",
+          "sizeBytes": 4729,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Start-WinUtilInstallAppRendering.ps1",
+          "blobSha": "f36e613d5120208875fffa1e4c192fd907989d39",
+          "sizeBytes": 2803,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Start-WinUtilJob.ps1",
+          "blobSha": "a33d476c87c07e0f173b74ca4eaa495cdc59e40c",
+          "sizeBytes": 12026,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Start-WinUtilTabWarmup.ps1",
+          "blobSha": "d42b6415ad3df657ad76d54f880253739de619e6",
+          "sizeBytes": 1435,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Start-WinUtilUserInterface.ps1",
+          "blobSha": "2f51c23411f9fac5902aaf157da5acb06c0c2443",
+          "sizeBytes": 23672,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Step-WinUtilJob.ps1",
+          "blobSha": "b78f6df4733edc0e64cc50d6ef78ca8316c1b4b6",
+          "sizeBytes": 4260,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Stop-WinUtilActiveWork.ps1",
+          "blobSha": "73924d356942aea6378da8b99abe9192cc42f640",
+          "sizeBytes": 4783,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Test-WinUtilDeferBackgroundWork.ps1",
+          "blobSha": "fa3a3f7209566ad76151553098cfb13cc387b2e4",
+          "sizeBytes": 3260,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Test-WinUtilPackageManager.ps1",
+          "blobSha": "c54d86e7be7ff92b4d68eb605281d980ac03bf8b",
+          "sizeBytes": 783,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Update-WinUtilAppCategoryChip.ps1",
+          "blobSha": "8248f8d4fa41a0d573ee52d4996108abb6271331",
+          "sizeBytes": 741,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Update-WinUtilSelections.ps1",
+          "blobSha": "42ac1a6ff61e0f1af92fef475e18ddbbfa4fd837",
+          "sizeBytes": 2906,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Write-WinUtilConsoleProgress.ps1",
+          "blobSha": "e45effddf9ae7ebdc0387dbdef73c140c2d28070",
+          "sizeBytes": 3013,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Write-WinUtilEnvironmentReportExport.ps1",
+          "blobSha": "938d8a6d6abfa1ece43237bcecc7b79d1ffcedad",
+          "sizeBytes": 5124,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Write-WinUtilErrorRecord.ps1",
+          "blobSha": "5aeb99f1b136b5f148fd7ca0113d0c730e602dd0",
+          "sizeBytes": 2338,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Write-WinUtilJobBanner.ps1",
+          "blobSha": "6c3fcf779f2b0370382fb7ba7aa629f4c23e99a2",
+          "sizeBytes": 1916,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/private/Write-WinUtilLog.ps1",
+          "blobSha": "e1f129e5b9b5c8ba5bec6ac2465b5b785b5c11bc",
+          "sizeBytes": 4510,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Initialize-WPFUI.ps1",
+          "blobSha": "17bdad03a647dd792efed68fd37f27459c59164d",
+          "sizeBytes": 5958,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFAppxInstall.ps1",
+          "blobSha": "321ce0ac73d151a653cdbf71d071e11226d45d7f",
+          "sizeBytes": 1648,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFAppxRemoval.ps1",
+          "blobSha": "d15e0312c6f853e05f17d4684cb04f727b4e2b4d",
+          "sizeBytes": 2980,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFButton.ps1",
+          "blobSha": "161d9146ad414d7ebd994cb5d1ed86d61266868f",
+          "sizeBytes": 8748,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFExportEnvironmentReport.ps1",
+          "blobSha": "c2f4e165eee40602ddfd60448288b22057cbd71e",
+          "sizeBytes": 3760,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFFeatureInstall.ps1",
+          "blobSha": "69242c2df42728e4f378595a5cb530109bcfdd41",
+          "sizeBytes": 1110,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFFixesNTPPool.ps1",
+          "blobSha": "610ff0741ea517d805b4a8b0746898800ef4f4f6",
+          "sizeBytes": 464,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFFixesNetwork.ps1",
+          "blobSha": "52781a09d614f93081688207c9ba228f3c3451b6",
+          "sizeBytes": 168,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFFixesUpdate.ps1",
+          "blobSha": "c7b899e6b447ca04ad3b413bec70e3a987358a14",
+          "sizeBytes": 15901,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFFixesWinget.ps1",
+          "blobSha": "6a4ed462443616bd5e5626cc6a81a35544441c70",
+          "sizeBytes": 316,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFGetInstalled.ps1",
+          "blobSha": "b71f85e80d8c68d37c3b93e731c04184bc7878b7",
+          "sizeBytes": 1974,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFImpex.ps1",
+          "blobSha": "cdf26c7aead87a95232b114d13d94ff30d6920c3",
+          "sizeBytes": 8230,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFInstall.ps1",
+          "blobSha": "604689a7a90a32d9253e0252e668b7e8537f3177",
+          "sizeBytes": 3714,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFInstallUpgrade.ps1",
+          "blobSha": "34bcca53d9a92188aa80c0b7e6f9c23684d46998",
+          "sizeBytes": 1863,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFOOSU.ps1",
+          "blobSha": "9fb1793b050c5cf2fae0815aab0183cd6fbacbf5",
+          "sizeBytes": 1085,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFPanelAutologin.ps1",
+          "blobSha": "c37642e681a0fa7f6c65cfce45693edbf9394ad4",
+          "sizeBytes": 266,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFPopup.ps1",
+          "blobSha": "46cdc2159cb714e9d248825c13a1f841bdcd3d05",
+          "sizeBytes": 1758,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFPresets.ps1",
+          "blobSha": "5019d339a2375fed054fc591f4e828e2a40a24fe",
+          "sizeBytes": 1612,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFRunspace.ps1",
+          "blobSha": "f18d04acb6d870ac255009a4173e41b1200d7e71",
+          "sizeBytes": 3645,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFSSHServer.ps1",
+          "blobSha": "3702248bd677bccf3267fe61c77a3791f7a858e9",
+          "sizeBytes": 137,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFSelectedCheckboxesUpdate.ps1",
+          "blobSha": "0a888cd51bd5341f665999e8ea79d2a6405d58a6",
+          "sizeBytes": 1361,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFSystemRepair.ps1",
+          "blobSha": "11298b570a4108ac7bb4a8a5e027755af189c7ff",
+          "sizeBytes": 2739,
+          "inspection": "read-full"
+        },
+        {
+          "path": "functions/public/Invoke-WPFTab.ps1",
+          "blobSha": "75bff077a7ba9c921620776aea4dfe1abdb1f346",
+          "sizeBytes": 2759,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFToggleAllCategories.ps1",
+          "blobSha": "6b0745d1756c718505b312fe5d3736271ed0340e",
+          "sizeBytes": 1990,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFToggleSelections.ps1",
+          "blobSha": "6f89a8b53e593e760dd12ce8f82355067afeb41c",
+          "sizeBytes": 1358,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFUIElements.ps1",
+          "blobSha": "053dbe8b6e4328be747e8660bde379316156860b",
+          "sizeBytes": 31754,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFUIThread.ps1",
+          "blobSha": "37ee021cf4b14a2cd6afd8a734635f0e4a35e25c",
+          "sizeBytes": 5438,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFUltimatePerformance.ps1",
+          "blobSha": "41b6487716cb69452d4912e4e0db6b6b3a3364ff",
+          "sizeBytes": 1605,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFUnInstall.ps1",
+          "blobSha": "a4e986fea2f23bce685050c0eca1c34c6c7ad9ff",
+          "sizeBytes": 4119,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFUpdatesdefault.ps1",
+          "blobSha": "0374ebcbc39caf6965bcdca85a65895db7838c8c",
+          "sizeBytes": 4199,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFUpdatesdisable.ps1",
+          "blobSha": "ac8742d18dfb4e847e31d0cea596be940b411cdd",
+          "sizeBytes": 3698,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFUpdatessecurity.ps1",
+          "blobSha": "bf4e1a9117b55a7cda558e43c49149bb9cd42116",
+          "sizeBytes": 6004,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFtweaksbutton.ps1",
+          "blobSha": "6fb9a91459988490a2df3254112a5b6c32672cc7",
+          "sizeBytes": 2431,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WPFundoall.ps1",
+          "blobSha": "42f0c8f72b9294bd99f883a17be94f9e9e92caab",
+          "sizeBytes": 1092,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "functions/public/Invoke-WinUtilAutoRun.ps1",
+          "blobSha": "72e324a1d6896c545660727d1a3d3945659ccb9e",
+          "sizeBytes": 6996,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "lint/PSScriptAnalyser.ps1",
+          "blobSha": "47feae83c8fda1539b414110e1e794a4b495f678",
+          "sizeBytes": 1115,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/activity-history.Tests.ps1",
+          "blobSha": "a4e7595783514dc31667640ff2fd15d5ce8f5f51",
+          "sizeBytes": 854,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/appx.Tests.ps1",
+          "blobSha": "4d619df3b1cb9b8f6b926dce4507f58a3129ad24",
+          "sizeBytes": 29640,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/assets.Tests.ps1",
+          "blobSha": "c58a237a84be1a823b7452954c1f940ccead3c4e",
+          "sizeBytes": 2648,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/background-deferral.Tests.ps1",
+          "blobSha": "959882153f489c77219d1707cfd8dea255a0adc1",
+          "sizeBytes": 4080,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/button-routing.Tests.ps1",
+          "blobSha": "db8d802aa2d4f4c4858aecc11bcc343f21b60bb7",
+          "sizeBytes": 3202,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/configs.Tests.ps1",
+          "blobSha": "be665e28f4f045fa004291b74706087b4ff86298",
+          "sizeBytes": 32181,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/dns-benchmark.Tests.ps1",
+          "blobSha": "c28a1f489a8bb4abce0f0b795885e60ea6b17a12",
+          "sizeBytes": 3339,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/dns.Tests.ps1",
+          "blobSha": "a558d765821c99870a205019293e08f771ab5906",
+          "sizeBytes": 13431,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/edge-removal.Tests.ps1",
+          "blobSha": "83147ab01ddaa5d2effdb3d799ed500e2ea82436",
+          "sizeBytes": 3101,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/environment-report-logs.Tests.ps1",
+          "blobSha": "31cf21456af9ff7e8ee2e0786b56e0a4ab06181b",
+          "sizeBytes": 3068,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/environment-report.Tests.ps1",
+          "blobSha": "402053295c46618e63ed30c1b0f1fa8a454935bd",
+          "sizeBytes": 20255,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/favicon-loading.Tests.ps1",
+          "blobSha": "aaa68332b656ce43c7e6e79fc76552738e206819",
+          "sizeBytes": 3879,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/feature-install.Tests.ps1",
+          "blobSha": "21cecd4e33e7bcfe6fb292d8355ed1eeed264765",
+          "sizeBytes": 3901,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/first-logon.Tests.ps1",
+          "blobSha": "74cb83c67c9f3fbaa9b8632aa8b805b07258cb36",
+          "sizeBytes": 3779,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/fixtures/legacy-config.json",
+          "blobSha": "ca911eccf8865278475d0c51f959ef06b9745367",
+          "sizeBytes": 318,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/functions.Tests.ps1",
+          "blobSha": "be12144c494a9bc7bf05b8776e7479dfa6aa2431",
+          "sizeBytes": 2677,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/generated-controls.Tests.ps1",
+          "blobSha": "62d7d12d7cb9c3af288cbb5b2d78351e0c44cdb8",
+          "sizeBytes": 1852,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/headless-ui.Tests.ps1",
+          "blobSha": "5db15f6bc5147bf4e8576c3bdc00176e5256fa6e",
+          "sizeBytes": 2621,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/headless.Tests.ps1",
+          "blobSha": "1dab23d80f6828a2897bf5d35615057386545084",
+          "sizeBytes": 20921,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/impex-command.Tests.ps1",
+          "blobSha": "f0508f7fce50421b8b5958fd5ac3ac346252d646",
+          "sizeBytes": 1621,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/impex-paths.Tests.ps1",
+          "blobSha": "f0bddf748f8202b872481701c9b26735543607d5",
+          "sizeBytes": 2781,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/install-rendering.Tests.ps1",
+          "blobSha": "7ba90dafad3eaf21ebd5fe76ee35de4a07fac88e",
+          "sizeBytes": 4493,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/install-workflow.Tests.ps1",
+          "blobSha": "319ba351ab13c18d6614c41d7142e29d4cee6d40",
+          "sizeBytes": 13956,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/job-layer.Tests.ps1",
+          "blobSha": "bf91b0aec4fdf9a83215e52f4474c1dab229ba19",
+          "sizeBytes": 22584,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/job-routing.Tests.ps1",
+          "blobSha": "470783d9de977041c52bf4baf9cc4aa0a0c02bb8",
+          "sizeBytes": 2667,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/lazy-tabs.Tests.ps1",
+          "blobSha": "54baf495cb1e94b99de02c6a08fe83140839dc5f",
+          "sizeBytes": 9273,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/logging.Tests.ps1",
+          "blobSha": "6ea24d6466706dadf71c7c066454e98a68392261",
+          "sizeBytes": 8474,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/multiplane-overlay.Tests.ps1",
+          "blobSha": "f1d0ed021b079915d01aab4f5b09f72f7bf9c4ff",
+          "sizeBytes": 7333,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/onedrive-removal.Tests.ps1",
+          "blobSha": "bbc86c1b007ca5b8af86d540948868daca4d1242",
+          "sizeBytes": 9365,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/onedrive-service.Tests.ps1",
+          "blobSha": "5f3b6ba0ec80d23715e1dde008eb1f94f73afe94",
+          "sizeBytes": 2519,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/oosu.Tests.ps1",
+          "blobSha": "173b7a07aede22df3e1cb078d082809a535871ed",
+          "sizeBytes": 6483,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/package-outcome.Tests.ps1",
+          "blobSha": "17170b66ef162b0de2fe2c3be190c179c79148e5",
+          "sizeBytes": 9771,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/package.Tests.ps1",
+          "blobSha": "7924ec4e216a6cb9749e625d0a90e8683df06834",
+          "sizeBytes": 9960,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/powershell-msi-upgrade.Tests.ps1",
+          "blobSha": "072d29c593de65b9f922b16d35d4735260f0b395",
+          "sizeBytes": 13203,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/preferences-theme.Tests.ps1",
+          "blobSha": "ffe6e6db122256b4af25ad14a9f721e45fca5ac3",
+          "sizeBytes": 8443,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/progress-state.Tests.ps1",
+          "blobSha": "5b24e7815520e4b5f99c48b0273e86b9ef48b41b",
+          "sizeBytes": 3162,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/runspace-lifecycle.Tests.ps1",
+          "blobSha": "b09ab6e7bd28fdf521fb815f1a75499d88d6d10c",
+          "sizeBytes": 4254,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/runspace.Tests.ps1",
+          "blobSha": "7b6cbb8f9963a266fbbdd5b46c7b895545552ed0",
+          "sizeBytes": 13093,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/sanity.Tests.ps1",
+          "blobSha": "877a6c7b41301275f5a8d5af2202f45bbd64fe13",
+          "sizeBytes": 9993,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/search-filter.Tests.ps1",
+          "blobSha": "9eff0e71c7aa69ab8b69504898d8c22a77da5fa7",
+          "sizeBytes": 23427,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/shutdown.Tests.ps1",
+          "blobSha": "282b83d23daff9a941a86fbb81222be2aa189379",
+          "sizeBytes": 8611,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/slider.Tests.ps1",
+          "blobSha": "036a265ec0d1ca629ec99a77d9907ace4eaa0ae7",
+          "sizeBytes": 2772,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/ssh-server.Tests.ps1",
+          "blobSha": "134575b8d53a43f2a6cf4cfe337043564ff5fabe",
+          "sizeBytes": 9178,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/svchost-splitting.Tests.ps1",
+          "blobSha": "72aa7e8f249f24bc320505956c8e3b5db0d69a4b",
+          "sizeBytes": 1783,
+          "inspection": "read-full"
+        },
+        {
+          "path": "pester/system-helpers.Tests.ps1",
+          "blobSha": "933d6803fc7a3b80cf7f8b6ae2f47d4d3509020f",
+          "sizeBytes": 19545,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/system-repair.Tests.ps1",
+          "blobSha": "feedb51503edb3c3d89737b947c31ad16a3fa230",
+          "sizeBytes": 3750,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/toggle-status.Tests.ps1",
+          "blobSha": "1777c72ba39644803971c23c32a0168c184cc0d5",
+          "sizeBytes": 3337,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/tooltip-key.Tests.ps1",
+          "blobSha": "595839fd1be9b65ce444585700931eb72f6d42b9",
+          "sizeBytes": 5889,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/triage-tools.Tests.ps1",
+          "blobSha": "ae8bd88ebd0669c06a47d0d9d17af3e6f7fce6b0",
+          "sizeBytes": 3956,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/tweaks.Tests.ps1",
+          "blobSha": "7ffb29ad9931c9936bbba33b7746b0ffad6f2639",
+          "sizeBytes": 24758,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/ui-state.Tests.ps1",
+          "blobSha": "3febb31db05300e2891d7dbbcca13f64fb2040ab",
+          "sizeBytes": 23741,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/update-profiles.Tests.ps1",
+          "blobSha": "dbc81b21b99e3ee603f0dff5f1ffc438f12f834e",
+          "sizeBytes": 18826,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/variables.Tests.ps1",
+          "blobSha": "80da5c99626ab00d480f611930d74c368ae4bdf6",
+          "sizeBytes": 2282,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/win11creator.Tests.ps1",
+          "blobSha": "8c1bfe5726c8ce1cbeb3d17f23936cb8685d85a8",
+          "sizeBytes": 76682,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/windows-ai.Tests.ps1",
+          "blobSha": "8e605508beb65a51c97a751f52da75c1d3c21598",
+          "sizeBytes": 4978,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/winoneshot-compat.Tests.ps1",
+          "blobSha": "b7486225d70570600db074a3a7534785ef13cd68",
+          "sizeBytes": 11263,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "pester/xaml.Tests.ps1",
+          "blobSha": "12eea9d8087b660a5665f1bd8bd922356c841659",
+          "sizeBytes": 24585,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "scripts/main.ps1",
+          "blobSha": "ce9b2136521850c940f301f3bf4c385b4e97fdfb",
+          "sizeBytes": 6743,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "scripts/start.ps1",
+          "blobSha": "0d0a5525a130976d9b25fe0a584b35d62a7d183f",
+          "sizeBytes": 10911,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "sign.bat",
+          "blobSha": "134f1a35083597a28f44066de23c0522791c4bfd",
+          "sizeBytes": 111,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "tools/autounattend.xml",
+          "blobSha": "748aa9fc08d36bf3c0235348821db2c382cd6903",
+          "sizeBytes": 29599,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "tools/devdocs-generator.md",
+          "blobSha": "168a1ec19426aeb858a349113d4442a567d5c829",
+          "sizeBytes": 5129,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "tools/devdocs-generator.ps1",
+          "blobSha": "219d9f9bb9ac9139e64371a38714737b591988e1",
+          "sizeBytes": 17243,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "tools/title-screen/.python-version",
+          "blobSha": "24ee5b1be9961e38a503c8e764b7385dbb6ba124",
+          "sizeBytes": 5,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "tools/title-screen/README.md",
+          "blobSha": "e1ae7662d8fac0a2811580b803cc44223fc974b2",
+          "sizeBytes": 2344,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "tools/title-screen/automate_title_screen.py",
+          "blobSha": "68af380530da11d4e57d2e8eae37c5dc2cbbf816",
+          "sizeBytes": 8172,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "tools/title-screen/capture_winutil.py",
+          "blobSha": "ba3ddae28334de6a17764a6420089fd74227286e",
+          "sizeBytes": 16594,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "tools/title-screen/create_composite.py",
+          "blobSha": "b2df78aa56b8a506509a81b769d8b8ffa3bb1eaa",
+          "sizeBytes": 5870,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "tools/title-screen/inspect_winutil.py",
+          "blobSha": "8fd9f83cfce0b18390c6c8d1634defe0995a69e3",
+          "sizeBytes": 4627,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "tools/title-screen/pyproject.toml",
+          "blobSha": "0e55dc4d214945869b41de51a0448fa2f8600742",
+          "sizeBytes": 235,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "tools/title-screen/test_automate_title_screen.py",
+          "blobSha": "5737a92ad4d0bfbb05a31621a40e384f88fa3c74",
+          "sizeBytes": 547,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "tools/title-screen/test_capture_winutil.py",
+          "blobSha": "7bc2443bb6530b37b8997c5b79b0b421efb1814b",
+          "sizeBytes": 1776,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "tools/title-screen/test_create_composite.py",
+          "blobSha": "68d16f3337f32f3eae76378dcc929c7f0b4f54f7",
+          "sizeBytes": 1708,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "tools/title-screen/uv.lock",
+          "blobSha": "a9badc0b1e4afd05c5adc17d90df217b9ed6a393",
+          "sizeBytes": 23715,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "windev.ps1",
+          "blobSha": "99ff2fabac1bcdfa668ec6dd50cc79400d0e59ae",
+          "sizeBytes": 622,
+          "inspection": "listed-only"
+        },
+        {
+          "path": "xaml/inputXML.xaml",
+          "blobSha": "e53e3bd58ea8f88d97e7fec90a1fbe174781a08c",
+          "sizeBytes": 159589,
+          "inspection": "listed-only"
+        }
+      ]
+    }
+  ],
+  "commercialSources": [
+    {
+      "name": "EXM Tweaks",
+      "urls": [
+        "https://exmtweaks.com/en-us",
+        "https://exmtweaks.com/en-eu/changelog",
+        "https://exmtweaks.com/en-us/user-agreement"
+      ],
+      "publicVersion": "2.2.1",
+      "releaseDate": "2026-09-01",
+      "termsDate": "2026-10-03",
+      "inspection": "Conteúdo textual público; sem binário/código privado/endpoints; títulos de recursos são alegações do fornecedor."
+    }
+  ],
+  "primaryReferences": [
+    {
+      "id": "cpu-topology",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getlogicalprocessorinformationex",
+      "decision": "Consultar topologia real, grupos e núcleos; não inferir SMT pela paridade de bits."
+    },
+    {
+      "id": "cpu-sets",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/procthread/cpu-sets",
+      "decision": "API de afinidade flexível existe, mas não comprova ganho para jogos; inventário precede experimentos."
+    },
+    {
+      "id": "powercfg",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/design/device-experiences/powercfg-command-line-options",
+      "decision": "Listar/query/active separadamente de set/delete/import; preservar planos e contexto AC/DC."
+    },
+    {
+      "id": "ipv6",
+      "url": "https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/configure-ipv6-in-windows",
+      "decision": "Microsoft desaconselha desabilitar/desvincular IPv6; página de suporte Server não valida receita universal de jogos desktop."
+    },
+    {
+      "id": "nic-properties",
+      "url": "https://learn.microsoft.com/en-us/powershell/module/netadapter/get-netadapteradvancedproperty?view=windowsserver2025-ps",
+      "decision": "Consultar propriedades expostas pelo driver antes de qualquer comparação ou alteração."
+    },
+    {
+      "id": "storage-counters",
+      "url": "https://learn.microsoft.com/en-us/powershell/module/storage/get-storagereliabilitycounter?view=windowsserver2025-ps",
+      "decision": "Consulta de desgaste, erros e temperatura dependente de disco/provider; ausente não é zero."
+    },
+    {
+      "id": "raw-input",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/inputdev/about-raw-input",
+      "decision": "Inventário/eventos HID por dispositivo; taxa de eventos não é input-to-photon."
+    },
+    {
+      "id": "component-cleanup",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/clean-up-the-winsxs-folder?view=windows-11",
+      "decision": "ResetBase impede desinstalar updates existentes; excluir do conjunto inicial reversível."
+    },
+    {
+      "id": "dns-query",
+      "url": "https://learn.microsoft.com/en-us/powershell/module/dnsclient/resolve-dnsname?view=windowsserver2025-ps",
+      "decision": "Teste de DNS precisa executar consultas e registrar cache/protocolo; conexão TCP53 mede outra coisa."
+    },
+    {
+      "id": "mmagent",
+      "url": "https://learn.microsoft.com/en-us/powershell/module/mmagent/get-mmagent?view=windowsserver2025-ps",
+      "decision": "Consultar recursos disponíveis; validar suporte de propriedades no Windows alvo. A página não descreve todos os campos de compressão."
+    },
+    {
+      "id": "nvidia-profiling",
+      "url": "https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html",
+      "decision": "Guia é de CUDA/Nsight; acesso a contadores requer permissões por padrão, não deve ser liberado globalmente como tweak. Não confundir com telemetria de jogos."
+    }
+  ],
+  "matrix": [
+    {
+      "id": "U01",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "1 Check/1 Bios Check.ps1",
+      "feature": "Identificação de placa e orientação BIOS",
+      "category": "BIOS/CPU/RAM",
+      "observation": "Consulta Win32_BaseBoard, mas também altera PasswordLess e oferece reboot firmware; recomenda PBO/XMP/C-states de forma ampla.",
+      "viability": "Reimplementar somente identificação e link ao fabricante.",
+      "dependencies": [
+        "CIM",
+        "manual do modelo/revisão"
+      ],
+      "risks": [
+        "Não é um check puramente de leitura; recomendações de overclock não universais."
+      ],
+      "state": "manual-pendente",
+      "nextStep": "Exibir modelo/revisão, sem serial público e sem modificar autenticação.",
+      "officialReferences": [],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/1%20Check/1%20Bios%20Check.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "U02",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "1 Check/2 Storage Check.ps1",
+      "feature": "Espaço em volumes",
+      "category": "armazenamento",
+      "observation": "Get-Volume calcula espaço livre, com erros suprimidos e substring textual.",
+      "viability": "Candidato próprio de leitura de alto valor.",
+      "dependencies": [
+        "Storage module/CIM"
+      ],
+      "risks": [
+        "Divisão por zero, valores indisponíveis, limite de 10% não é diagnóstico universal."
+      ],
+      "state": "candidato",
+      "nextStep": "Retornar bytes/percentual opcionais e erro por volume; testar volume sem tamanho.",
+      "officialReferences": [],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/1%20Check/2%20Storage%20Check.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "U03",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "1 Check/3 Ram Check.ps1",
+      "feature": "Inventário de módulos RAM",
+      "category": "RAM",
+      "observation": "Baixa e inicia CPU-Z de release espelhada; oferece checklist de slots/perfil.",
+      "viability": "Preferir CIM e manual da placa; utilitário opcional separado.",
+      "dependencies": [
+        "CIM",
+        "manual OEM; CPU-Z licença própria se escolhido"
+      ],
+      "risks": [
+        "Download não valida assinatura/hash no fluxo lido; sticks não provam canais ativos."
+      ],
+      "state": "candidato",
+      "nextStep": "Modelar capacidade/velocidade informada/slots com fonte e incerteza.",
+      "officialReferences": [],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/1%20Check/3%20Ram%20Check.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "U04",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "1 Check/4 Gpu Check.ps1",
+      "feature": "Inventário GPU/PCIe/ReBAR",
+      "category": "GPU",
+      "observation": "Baixa/inicia GPU-Z espelhado, apresenta orientações de barramento/ReBAR.",
+      "viability": "Inventário próprio; diagnóstico avançado depende API/driver.",
+      "dependencies": [
+        "GPU-Z licença própria",
+        "driver e API fabricante"
+      ],
+      "risks": [
+        "CIM básico não comprova link PCIe sob carga/ReBAR; não inferir."
+      ],
+      "state": "candidato",
+      "nextStep": "Separar placa/driver disponíveis de campos ainda não coletados.",
+      "officialReferences": [],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/1%20Check/4%20Gpu%20Check.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "U05",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "3 Setup/2 Memory Compression.ps1",
+      "feature": "Compressão de memória",
+      "category": "RAM",
+      "observation": "Menu recomenda Off; Disable/Enable-MMAgent suprimem erros; Get-MMAgent oferece consulta.",
+      "viability": "Não adotar desativação como recomendação.",
+      "dependencies": [
+        "MMAgent",
+        "Windows alvo"
+      ],
+      "risks": [
+        "Pressão de memória e paginação dependem carga; erro pode parecer sucesso."
+      ],
+      "state": "metodo-rejeitado",
+      "nextStep": "Inventariar memória comprometida/pressão e estado antes de experimento.",
+      "officialReferences": [
+        "mmagent"
+      ],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/3%20Setup/2%20Memory%20Compression.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "U06",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "8 Advanced/8 Smt Ht.ps1",
+      "feature": "Afinidade por paridade",
+      "category": "CPU",
+      "observation": "Monta máscara alternada pelo número de processadores, converte para Int32, altera ProcessorAffinity; outro ramo encerra launchers.",
+      "viability": "Rejeitar máscara genérica; topologia somente leitura primeiro.",
+      "dependencies": [
+        "Win32 topology",
+        "direitos sobre processo"
+      ],
+      "risks": [
+        "Paridade não garante irmãos SMT; Int32 limita máscaras; encerramento forçado afeta sessão."
+      ],
+      "state": "metodo-rejeitado",
+      "nextStep": "Usar grupos/núcleos reais e testes de hipótese por carga.",
+      "officialReferences": [
+        "cpu-topology",
+        "cpu-sets"
+      ],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/8%20Advanced/8%20Smt%20Ht.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "U07",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "8 Advanced/9 Core 1 Thread 1.ps1",
+      "feature": "Excluir bits 0 e 1 da afinidade",
+      "category": "CPU",
+      "observation": "Calcula [int](2^N-1)-3 e modifica afinidade; não consulta topologia.",
+      "viability": "Não recomendar universalmente.",
+      "dependencies": [
+        "Topologia/processor groups"
+      ],
+      "risks": [
+        "Overflow e associação incorreta núcleo/thread; interrompe launchers."
+      ],
+      "state": "metodo-rejeitado",
+      "nextStep": "Diagnóstico temporal CPU antes de ensaio isolado.",
+      "officialReferences": [
+        "cpu-topology"
+      ],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/8%20Advanced/9%20Core%201%20Thread%201.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "U08",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "6 Windows/26 Network Adapter Power Savings & Wake.ps1",
+      "feature": "EEE/Wake/energia da NIC",
+      "category": "rede/energia",
+      "observation": "Escreve várias chaves em todos adaptadores; Default apaga valores em vez de restaurar anteriores.",
+      "viability": "Inventário por adaptador viável; preset global rejeitado.",
+      "dependencies": [
+        "Driver NIC",
+        "Get-NetAdapterAdvancedProperty"
+      ],
+      "risks": [
+        "Perda de WoL, bateria/consumo e conectividade; propriedades distintas por fabricante."
+      ],
+      "state": "metodo-rejeitado",
+      "nextStep": "Listar valores suportados; ensaios EEE separados com baseline.",
+      "officialReferences": [
+        "nic-properties"
+      ],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/6%20Windows/26%20Network%20Adapter%20Power%20Savings%20%26%20Wake.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "U09",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "6 Windows/27 Network IPv4 Only.ps1",
+      "feature": "Bindings IPv4-only",
+      "category": "rede",
+      "observation": "Desabilita IPv6, LLDP, cliente/servidor Microsoft e QoS em todos adaptadores; Default habilita conjunto fixo.",
+      "viability": "Não integrar preset.",
+      "dependencies": [
+        "NetAdapter bindings"
+      ],
+      "risks": [
+        "Interrompe recursos de rede; não restaura estado anterior."
+      ],
+      "state": "metodo-rejeitado",
+      "nextStep": "Inventário bindings/DNS/rota; diagnóstico específico.",
+      "officialReferences": [
+        "ipv6"
+      ],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/6%20Windows/27%20Network%20IPv4%20Only.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "U10",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "6 Windows/28 Write Cache Buffer Flushing.ps1",
+      "feature": "Cache protegido de disco",
+      "category": "armazenamento",
+      "observation": "Marca CacheIsPowerProtected=1 em SCSI/NVME; rollback reg delete remove chave Disk inteira.",
+      "viability": "Rejeitar método e falso pressuposto de proteção elétrica.",
+      "dependencies": [
+        "Disco/controlador",
+        "proteção física de energia"
+      ],
+      "risks": [
+        "Perda de dados; rollback remove valores alheios."
+      ],
+      "state": "metodo-rejeitado",
+      "nextStep": "Diagnosticar modelo, firmware e saúde, sem alterar política de flush.",
+      "officialReferences": [
+        "storage-counters"
+      ],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/6%20Windows/28%20Write%20Cache%20Buffer%20Flushing.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "U11",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "6 Windows/35 Cleanup.ps1",
+      "feature": "Limpeza",
+      "category": "manutenção",
+      "observation": "Exclui Temp, Windows.old, XboxGames, inetpub e PerfLogs; para wuauserv e apaga cache; erros suprimidos.",
+      "viability": "Não importar; limpeza própria requer escopo e prévia.",
+      "dependencies": [
+        "File system",
+        "permissões por alvo"
+      ],
+      "risks": [
+        "Apaga jogos/dados e evidência diagnóstica; sem reversão."
+      ],
+      "state": "metodo-rejeitado",
+      "nextStep": "Prévia de itens explicitamente temporários, exclusões e idade; não chamar ganho de FPS.",
+      "officialReferences": [],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/6%20Windows/35%20Cleanup.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "U12",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "7 Hardware/3 Mouse Polling Rate Test.ps1",
+      "feature": "Polling de mouse",
+      "category": "input/periféricos",
+      "observation": "Instala Mouse Movement Recorder em Program Files e atalhos; recomenda polling máximo, mas reconhece custo CPU/engine.",
+      "viability": "Orientação manual e futura medição própria são viáveis.",
+      "dependencies": [
+        "Origem/licença do utilitário",
+        "Raw Input"
+      ],
+      "risks": [
+        "Polling não equivale latência física; taxas altas podem afetar desempenho."
+      ],
+      "state": "manual-pendente",
+      "nextStep": "Registrar distribuição temporal e perda de eventos, sem driver de overclock.",
+      "officialReferences": [
+        "raw-input"
+      ],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/7%20Hardware/3%20Mouse%20Polling%20Rate%20Test.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "U13",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "7 Hardware/5 Controller Polling Rate Test.ps1",
+      "feature": "Diagnóstico de controle como periférico",
+      "category": "input/periféricos",
+      "observation": "Baixa polling.exe espelhado e instala atalhos.",
+      "viability": "Opcional para diagnóstico; não reintroduz navegação gamepad na UI.",
+      "dependencies": [
+        "Origem/licença Gamepadla a revisar",
+        "HID"
+      ],
+      "risks": [
+        "Não verificadas assinatura nem precisão; não instalar implicitamente."
+      ],
+      "state": "manual-pendente",
+      "nextStep": "Consultar projeto original e protocolo de medição antes de integração.",
+      "officialReferences": [
+        "raw-input"
+      ],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/7%20Hardware/5%20Controller%20Polling%20Rate%20Test.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "U14",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "8 Advanced/19 NVME Faster Driver.ps1",
+      "feature": "Feature overrides NVMe",
+      "category": "armazenamento/drivers",
+      "observation": "Ativa IDs FeatureManagement e SafeBoot; avisa quebra de DirectStorage; rollback apaga Policies\\Microsoft inteiro.",
+      "viability": "Rejeitar implementação genérica.",
+      "dependencies": [
+        "Build exato Windows",
+        "driver/storage stack"
+      ],
+      "risks": [
+        "Chaves internas sem contrato suportado; perda de políticas alheias no rollback."
+      ],
+      "state": "metodo-rejeitado",
+      "nextStep": "Aguardar suporte oficial do SO/driver; identificar stack atual.",
+      "officialReferences": [],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/8%20Advanced/19%20NVME%20Faster%20Driver.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "U15",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "6 Windows/29 Power Plan.ps1",
+      "feature": "Plano de energia global",
+      "category": "CPU/energia",
+      "observation": "Trechos leem/criam/ativam plano, removem outros, mudam AC/DC e bateria; Default usa restoredefaultschemes.",
+      "viability": "Leitura do plano é candidata; pacote de alterações rejeitado.",
+      "dependencies": [
+        "powercfg/APIs Power",
+        "OEM/AC/DC"
+      ],
+      "risks": [
+        "Perde planos personalizados; estado mínimo CPU100% e bateria demandam avaliação; default não snapshot."
+      ],
+      "state": "metodo-rejeitado",
+      "nextStep": "Inventariar GUID e valores, exportar baseline antes de mutação futura.",
+      "officialReferences": [
+        "powercfg"
+      ],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/6%20Windows/29%20Power%20Plan.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-selected-sections"
+    },
+    {
+      "id": "U16",
+      "project": "FR33THYFR33THY/Ultimate",
+      "file": "5 Graphics/5 Nvidia Settings.ps1",
+      "feature": "Perfil global NVIDIA",
+      "category": "GPU",
+      "observation": "Trechos baixam inspector/appx, liberam contadores a todos usuários, importam .nip com VRR/VSync/limiter/latência.",
+      "viability": "Orientação por jogo e API documentada; não copiar preset.",
+      "dependencies": [
+        "NVIDIA driver",
+        "Profile Inspector licença própria"
+      ],
+      "risks": [
+        "IDs e efeito por driver; alteração global afeta outros jogos/segurança de profiling."
+      ],
+      "state": "manual-pendente",
+      "nextStep": "Separar frame pacing, VRR, Reflex e cap; medir por jogo.",
+      "officialReferences": [
+        "nvidia-profiling"
+      ],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "a0a33a57078434201f582b0db5107dcbb502292a",
+      "url": "https://github.com/FR33THYFR33THY/Ultimate/blob/a0a33a57078434201f582b0db5107dcbb502292a/5%20Graphics/5%20Nvidia%20Settings.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-selected-sections"
+    },
+    {
+      "id": "W01",
+      "project": "FR33THYFR33THY/WinSux",
+      "file": "WinSux/stepone.ps1",
+      "feature": "Preparação de segurança e driver",
+      "category": "segurança/drivers",
+      "observation": "Reconfigura binPath do TrustedInstaller para comandos e restaura depois; desativa proteções e invoca DDU com limpeza ampla/restart.",
+      "viability": "Excluir execução integrada.",
+      "dependencies": [
+        "Admin/TrustedInstaller",
+        "DDU externo"
+      ],
+      "risks": [
+        "Mudança de proteção, serviços e drivers em lote; falha intermediária perigosa."
+      ],
+      "state": "metodo-rejeitado",
+      "nextStep": "Inventário de versão/assinatura de drivers; nenhuma desativação de proteção.",
+      "officialReferences": [],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "91adbfd63b7ed2eb5fcf0821fd53405a3cf63573",
+      "url": "https://github.com/FR33THYFR33THY/WinSux/blob/91adbfd63b7ed2eb5fcf0821fd53405a3cf63573/WinSux/stepone.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "W02",
+      "project": "FR33THYFR33THY/WinSux",
+      "file": "WinSux/steptwo.ps1",
+      "feature": "Energia de dispositivos e cache",
+      "category": "energia/periféricos/armazenamento",
+      "observation": "Seção579-721 escreve energia/wake em ACPI/HID/PCI/USB e CacheIsPowerProtected; índice de comentários revela etapas adicionais não auditadas.",
+      "viability": "Não importar; diagnóstico seletivo viável.",
+      "dependencies": [
+        "Registro por dispositivo",
+        "drivers"
+      ],
+      "risks": [
+        "Aplica em massa a dispositivos distintos e discos sem validar proteção."
+      ],
+      "state": "metodo-rejeitado",
+      "nextStep": "Inventariar capacidades por dispositivo e conservar desconhecido.",
+      "officialReferences": [
+        "nic-properties",
+        "storage-counters"
+      ],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "91adbfd63b7ed2eb5fcf0821fd53405a3cf63573",
+      "url": "https://github.com/FR33THYFR33THY/WinSux/blob/91adbfd63b7ed2eb5fcf0821fd53405a3cf63573/WinSux/steptwo.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-selected-sections"
+    },
+    {
+      "id": "W03",
+      "project": "FR33THYFR33THY/WinSux",
+      "file": "WinSux/reg.reg",
+      "feature": "Preset global de aparência/armazenamento/GPU",
+      "category": "Windows/GPU/acessibilidade",
+      "observation": "Trechos desabilitam tarefa de otimização de discos, forçam DPI100%, HAGS e preferência gráfica global.",
+      "viability": "Não importar arquivo; preferências próprias independentes.",
+      "dependencies": [
+        "Versão Windows",
+        "driver",
+        "monitor"
+      ],
+      "risks": [
+        "Acessibilidade e display afetados; HAGS/VRR dependem cenário; não mede resultado."
+      ],
+      "state": "metodo-rejeitado",
+      "nextStep": "UI do GOAT respeita DPI do usuário; guias por monitor/jogo.",
+      "officialReferences": [],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "91adbfd63b7ed2eb5fcf0821fd53405a3cf63573",
+      "url": "https://github.com/FR33THYFR33THY/WinSux/blob/91adbfd63b7ed2eb5fcf0821fd53405a3cf63573/WinSux/reg.reg",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-selected-sections"
+    },
+    {
+      "id": "C01",
+      "project": "ChrisTitusTech/winutil",
+      "file": "functions/private/Get-WinUtilDNSBenchmark.ps1",
+      "feature": "Benchmark DNS",
+      "category": "rede/diagnóstico",
+      "observation": "Mede BeginConnect TCP53 com stopwatch; falha=9999; seleciona providers opt-in.",
+      "viability": "Reimplementar teste de consulta, não chamar TCP connect de DNS.",
+      "dependencies": [
+        "Rede",
+        "lista explícita de resolvers",
+        "DnsClient"
+      ],
+      "risks": [
+        "RTT conexão não tempo de resolução nem ping do servidor do jogo."
+      ],
+      "state": "candidato",
+      "nextStep": "Consultar nomes controlados, separar cache/TCP/UDP/timeouts; nunca trocar DNS automaticamente.",
+      "officialReferences": [
+        "dns-query"
+      ],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "2f0bdc8fca52e1ebe31a8d98216428061d3f8956",
+      "url": "https://github.com/ChrisTitusTech/winutil/blob/2f0bdc8fca52e1ebe31a8d98216428061d3f8956/functions/private/Get-WinUtilDNSBenchmark.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "C02",
+      "project": "ChrisTitusTech/winutil",
+      "file": "functions/public/Invoke-WPFSystemRepair.ps1",
+      "feature": "Reparo do sistema",
+      "category": "manutenção/reparo",
+      "observation": "Executa chkdsk /scan /perf, SFC /scannow, DISM RestoreHealth; verifica ExitCode por etapa e aviso3010.",
+      "viability": "Arquitetura útil; integração própria precisa separar diagnóstico de reparo.",
+      "dependencies": [
+        "Executáveis Windows",
+        "elevação quando necessária",
+        "janela de manutenção"
+      ],
+      "risks": [
+        "Reparo modifica sistema e usa recursos; código0 não prova ausência de corrupção."
+      ],
+      "state": "candidato",
+      "nextStep": "Parser de resultados/logs e estados warning/reboot; começar importação de logs.",
+      "officialReferences": [],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "2f0bdc8fca52e1ebe31a8d98216428061d3f8956",
+      "url": "https://github.com/ChrisTitusTech/winutil/blob/2f0bdc8fca52e1ebe31a8d98216428061d3f8956/functions/public/Invoke-WPFSystemRepair.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "C03",
+      "project": "ChrisTitusTech/winutil",
+      "file": "functions/private/Set-WinUtilRegistry.ps1",
+      "feature": "Escrita idempotente e erros",
+      "category": "executor",
+      "observation": "Diferencia valor ausente de erro de acesso, mas captura exceções e escreve warning/log sem rethrow neste helper.",
+      "viability": "Aprendizado para executor próprio, não reutilização direta.",
+      "dependencies": [
+        "Registro",
+        "auditoria de operação"
+      ],
+      "risks": [
+        "Chamador precisa status estruturado, snapshot e pós-condição; warning não garante falha propagada."
+      ],
+      "state": "candidato",
+      "nextStep": "Contrato Rust Result; estado ausente/tipo/valor e rollback do dado real.",
+      "officialReferences": [],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "2f0bdc8fca52e1ebe31a8d98216428061d3f8956",
+      "url": "https://github.com/ChrisTitusTech/winutil/blob/2f0bdc8fca52e1ebe31a8d98216428061d3f8956/functions/private/Set-WinUtilRegistry.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "C04",
+      "project": "ChrisTitusTech/winutil",
+      "file": "config/tweaks.json",
+      "feature": "SvcHost/IPv6/limpeza",
+      "category": "serviços/rede/manutenção",
+      "observation": "Seções lidas confirmam default undo de Svchost, três valores conflitantes DisabledComponents e DiskCleanup com ResetBase.",
+      "viability": "Não portar presets; usar achados para conflitos/rollback.",
+      "dependencies": [
+        "Build Windows",
+        "propriedades compartilhadas"
+      ],
+      "risks": [
+        "Última escrita vence; ResetBase impede remover updates existentes."
+      ],
+      "state": "metodo-rejeitado",
+      "nextStep": "Grafo de conflitos por recurso; bloquear operação irreversível no lote inicial.",
+      "officialReferences": [
+        "ipv6",
+        "component-cleanup"
+      ],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "2f0bdc8fca52e1ebe31a8d98216428061d3f8956",
+      "url": "https://github.com/ChrisTitusTech/winutil/blob/2f0bdc8fca52e1ebe31a8d98216428061d3f8956/config/tweaks.json",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-selected-sections"
+    },
+    {
+      "id": "C05",
+      "project": "ChrisTitusTech/winutil",
+      "file": "pester/svchost-splitting.Tests.ps1",
+      "feature": "Teste de regressão Svchost",
+      "category": "testes/serviços",
+      "observation": "Mocks verificam soma RAM DWORD e undo para default3670016, sem consultar memória.",
+      "viability": "Boa ideia de teste de contrato; insuficiente para restauração de personalizado.",
+      "dependencies": [
+        "Pester no projeto origem"
+      ],
+      "risks": [
+        "Teste simulado não comprova XboxGipSvc real; preservação de valor prévio não testada nesse arquivo."
+      ],
+      "state": "candidato",
+      "nextStep": "Testar snapshot personalizado/ausente, falha parcial e conflito, sem modificar host.",
+      "officialReferences": [],
+      "evidence": "leitura-estatica",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "commit": "2f0bdc8fca52e1ebe31a8d98216428061d3f8956",
+      "url": "https://github.com/ChrisTitusTech/winutil/blob/2f0bdc8fca52e1ebe31a8d98216428061d3f8956/pester/svchost-splitting.Tests.ps1",
+      "license": "MIT para código do projeto, com avisos; componentes externos exigem licença própria",
+      "inspection": "read-full"
+    },
+    {
+      "id": "E01",
+      "project": "EXM Tweaks",
+      "file": "site público /en-us",
+      "feature": "Detecção de sistema, planos, afinidade, serviços e adapter tuner",
+      "category": "CPU/energia/rede/Windows",
+      "observation": "Oferta pública e descrições comerciais consultadas; algoritmo e código não disponibilizados nessas páginas.",
+      "viability": "Usar como escopo de investigação; implementação original baseada em APIs oficiais.",
+      "dependencies": [
+        "Hardware/driver/Windows",
+        "documentação primária por recurso"
+      ],
+      "risks": [
+        "Anúncio não comprova eficácia, reversibilidade ou cobertura de hardware."
+      ],
+      "state": "pesquisado-publico",
+      "nextStep": "Vincular recomendações a inventário real e pré-condições.",
+      "officialReferences": [
+        "powercfg",
+        "cpu-topology",
+        "nic-properties"
+      ],
+      "evidence": "pagina-comercial",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "url": "https://exmtweaks.com/en-us",
+      "version": "2.2.1 / 2026-09-01 (changelog público)",
+      "license": "Comercial; nenhuma licença aberta para implementação identificada; termos03/10/2026 consultados",
+      "inspection": "read-public-page"
+    },
+    {
+      "id": "E02",
+      "project": "EXM Tweaks",
+      "file": "/en-eu/changelog",
+      "feature": "Evolução e regressões declaradas",
+      "category": "rede/energia/qualidade",
+      "observation": "2.2.1 em01/09/2026; changelog descreve persistência de estado, ajustes de rede retirados e correções anteriores de planos/BSOD.",
+      "viability": "Transformar em requisitos de testes de compatibilidade e persistência.",
+      "dependencies": [
+        "Histórico público",
+        "reprodução futura controlada"
+      ],
+      "risks": [
+        "Relato do fornecedor não é reprodução independente; internals desconhecidos."
+      ],
+      "state": "pesquisado-publico",
+      "nextStep": "Testar estados em upgrades e falhas, sem importar configurações.",
+      "officialReferences": [],
+      "evidence": "changelog-fornecedor",
+      "implemented": false,
+      "testedInHardware": false,
+      "approvedForExecution": false,
+      "url": "https://exmtweaks.com/en-eu/changelog",
+      "version": "2.2.1 / 2026-09-01 (changelog público)",
+      "license": "Comercial; nenhuma licença aberta para implementação identificada; termos03/10/2026 consultados",
+      "inspection": "read-public-page"
+    }
+  ]
+}

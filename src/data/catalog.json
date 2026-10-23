@@ -1,0 +1,1330 @@
+[
+  {
+    "id": "cpu-baseline-investigation",
+    "title": "Diagnóstico de saturação e espera da CPU",
+    "category": "cpu",
+    "level": "basic",
+    "summary": "Investigar uso por processo e por núcleo antes de atribuir quedas de fluidez ao processador.",
+    "mechanism": "A análise distingue trabalho executado, espera e concorrência. Uso agregado baixo não descarta uma thread crítica saturada; correlação exige uma linha do tempo.",
+    "prerequisites": [
+      "Inventário de núcleos e threads",
+      "Cenário reproduzível e coletor identificado"
+    ],
+    "risks": [
+      "Captura pode alterar a carga observada",
+      "Logs podem conter nomes e caminhos privados"
+    ],
+    "validation": [
+      "Comparar captura com e sem instrumentação",
+      "Correlacionar a thread crítica com o intervalo do sintoma"
+    ],
+    "rollback": "Somente leitura; interromper a captura e aplicar retenção aos arquivos autorizados.",
+    "evidence": 3,
+    "disposition": "integration-pending",
+    "applicability": "Requer verificar contadores e permissões no Windows alvo; coleta ainda não integrada.",
+    "sources": [
+      {
+        "title": "Microsoft — CPU Analysis",
+        "url": "https://learn.microsoft.com/en-us/windows-hardware/test/wpt/cpu-analysis"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["cpu", "gargalo", "threads", "profiling", "frametime"]
+  },
+  {
+    "id": "cpu-energy-preference",
+    "title": "Preferência de desempenho e energia da CPU",
+    "category": "cpu",
+    "level": "general",
+    "summary": "Avaliar EPP somente quando a plataforma e a política OEM forem conhecidas.",
+    "mechanism": "EPP orienta a preferência entre desempenho e economia em plataformas suportadas. O parâmetro documentado depende de CPPC e modo autônomo; não impõe uma frequência garantida.",
+    "prerequisites": [
+      "Confirmar suporte da plataforma e política atual",
+      "Separar alimentação AC e bateria"
+    ],
+    "risks": ["Maior consumo e temperatura", "Conflito com políticas OEM e classes de núcleos"],
+    "validation": [
+      "Comparar trabalho concluído, energia e frametime",
+      "Verificar se a política foi respeitada pelo hardware"
+    ],
+    "rollback": "Restaurar os valores AC/DC e o plano originais; procedimento ainda não automatizado.",
+    "evidence": 2,
+    "disposition": "research",
+    "applicability": "Compatibilidade desconhecida até identificar CPU, firmware, Windows e controle de energia.",
+    "sources": [
+      {
+        "title": "Microsoft — PerfEnergyPreference",
+        "url": "https://learn.microsoft.com/en-us/windows-hardware/customize/power-settings/options-for-perf-state-engine-perfenergypreference"
+      },
+      {
+        "title": "Microsoft — Processor power management",
+        "url": "https://learn.microsoft.com/en-us/windows-hardware/customize/power-settings/configure-processor-power-management-options"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["epp", "cppc", "energia", "boost"]
+  },
+  {
+    "id": "cpu-amd-curve-review",
+    "title": "PBO e Curve Optimizer: revisão por plataforma",
+    "category": "cpu",
+    "level": "advanced",
+    "summary": "Estudar limites AMD específicos sem propor undervolt ou Curve Optimizer universal.",
+    "mechanism": "PBO e Curve Optimizer atuam sobre o comportamento do processador em plataformas compatíveis. Resultado, estabilidade e cobertura de garantia dependem da operação e das especificações.",
+    "prerequisites": [
+      "CPU, placa e BIOS explicitamente suportadas",
+      "Plano de recuperação físico e dados preservados",
+      "Sensores e protocolo de estabilidade validados"
+    ],
+    "risks": [
+      "Instabilidade, corrupção de dados e dano físico",
+      "Operação fora das especificações pode afetar garantia"
+    ],
+    "validation": [
+      "Testar carga variável, repouso e transições",
+      "Registrar erros, temperatura e desempenho antes/depois"
+    ],
+    "rollback": "Restaurar perfil documentado do fabricante; falha de boot pode exigir procedimento físico específico.",
+    "evidence": 4,
+    "disposition": "research",
+    "applicability": "Somente pesquisa: família comercial da CPU não confirma suporte nem define valores seguros.",
+    "sources": [
+      {
+        "title": "AMD — Ryzen Master",
+        "url": "https://www.amd.com/en/products/software/ryzen-master.html"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["amd", "pbo", "curve-optimizer", "undervolt", "estabilidade"]
+  },
+  {
+    "id": "cpu-intel-limits-review",
+    "title": "Intel XTU e limites de potência: elegibilidade",
+    "category": "cpu",
+    "level": "advanced",
+    "summary": "Verificar requisitos reais antes de estudar turbo, tensão ou limites de potência Intel.",
+    "mechanism": "O XTU expõe controles apenas em combinações suportadas de processador, chipset, BIOS e versão da ferramenta. A disponibilidade de um controle não demonstra benefício para o jogo.",
+    "prerequisites": [
+      "Lista de suporte da versão do XTU",
+      "Modelo exato de CPU, placa e firmware",
+      "Limites oficiais e recuperação definidos"
+    ],
+    "risks": [
+      "Aquecimento, instabilidade e perda de dados",
+      "Controles indisponíveis ou limitados em determinadas plataformas"
+    ],
+    "validation": [
+      "Confirmar limites efetivos e throttling sob carga",
+      "Avaliar estabilidade, energia e trabalho concluído"
+    ],
+    "rollback": "Restaurar configuração anterior pelo método OEM; não prometer downgrade de firmware.",
+    "evidence": 4,
+    "disposition": "research",
+    "applicability": "Somente pesquisa; não instalar XTU nem presumir suporte com base apenas no sufixo da CPU.",
+    "sources": [
+      {
+        "title": "Intel — requisitos do XTU",
+        "url": "https://www.intel.com/content/www/us/en/support/articles/000006636/processors/processor-utilities-and-programs.html"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["intel", "xtu", "turbo", "pl1", "pl2"]
+  },
+  {
+    "id": "ram-commit-pressure",
+    "title": "Pressão de memória e limite de compromisso",
+    "category": "ram",
+    "level": "basic",
+    "summary": "Distinguir RAM ocupada, compromisso de memória e atividade real de paginação.",
+    "mechanism": "O limite de compromisso considera memória física e suporte de paginação. A análise deve observar a carga e falhas de alocação; quantidade de RAM livre isolada não define um problema.",
+    "prerequisites": ["Contadores e unidades identificados", "Carga de trabalho representativa"],
+    "risks": ["Confundir cache útil com desperdício", "Medição curta pode omitir picos"],
+    "validation": [
+      "Registrar pico de compromisso e limite disponível",
+      "Correlacionar paginação e latência durante o sintoma"
+    ],
+    "rollback": "Somente leitura; nenhuma limpeza de memória é proposta.",
+    "evidence": 3,
+    "disposition": "integration-pending",
+    "applicability": "Requer coleta validada no sistema alvo; estado atual desconhecido.",
+    "sources": [
+      {
+        "title": "Microsoft — dimensionamento do arquivo de paginação",
+        "url": "https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/how-to-determine-the-appropriate-page-file-size-for-64-bit-versions-of-windows"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["ram", "commit", "memoria", "pagefile"]
+  },
+  {
+    "id": "ram-xmp-expo-review",
+    "title": "Perfis XMP/EXPO e estabilidade da memória",
+    "category": "ram",
+    "level": "advanced",
+    "summary": "Conferir memória, placa e firmware antes de considerar um perfil de overclock.",
+    "mechanism": "Perfis descrevem frequência, timings e tensão. Certificação corresponde a combinações testadas; não garante qualquer kit misturado, população de slots ou controlador.",
+    "prerequisites": [
+      "Part numbers e quantidade de DIMMs",
+      "QVL e manual da placa",
+      "Backup e procedimento de recuperação de boot"
+    ],
+    "risks": [
+      "Falha de treinamento, erros e corrupção de dados",
+      "Operação fora das especificações pode afetar garantia"
+    ],
+    "validation": [
+      "Confirmar parâmetros após reinicialização",
+      "Executar testes de memória e uso real com registro de erros"
+    ],
+    "rollback": "Restaurar perfil anterior ou padrão documentado; recuperação depende da placa e requer intervenção.",
+    "evidence": 2,
+    "disposition": "manual",
+    "applicability": "Recomendação manual condicional. Suporte XMP/EXPO e valores não foram confirmados neste computador.",
+    "sources": [
+      {
+        "title": "Intel — Extreme Memory Profile",
+        "url": "https://www.intel.com/content/www/us/en/gaming/extreme-memory-profile-xmp.html?wapkw=XMP"
+      },
+      {
+        "title": "AMD — EXPO",
+        "url": "https://www.amd.com/en/products/processors/technologies/expo.html"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["ram", "xmp", "expo", "bios", "timings"]
+  },
+  {
+    "id": "ram-disable-pagefile-rejected",
+    "title": "Desativação universal do arquivo de paginação",
+    "category": "ram",
+    "level": "advanced",
+    "summary": "Rejeitado como otimização genérica de jogos.",
+    "mechanism": "Remover o arquivo de paginação altera o limite de compromisso e pode prejudicar diagnósticos de falha. Não há benefício universal demonstrado para o GOAT HUB.",
+    "prerequisites": ["Qualquer exceção exigiria medição e requisitos de dump documentados"],
+    "risks": ["Falhas de alocação", "Perda de capacidade de registrar determinados dumps"],
+    "validation": [
+      "Confirmar que este item não pode integrar execução automática",
+      "Priorizar investigação de pressão real de memória"
+    ],
+    "rollback": "Não aplicar. Se já alterado externamente, registrar o estado antes de planejar restauração.",
+    "evidence": 5,
+    "disposition": "rejected",
+    "applicability": "Rejeição da aplicação universal; não é uma afirmação de que toda configuração personalizada é inválida.",
+    "sources": [
+      {
+        "title": "Microsoft — dimensionamento do arquivo de paginação",
+        "url": "https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/how-to-determine-the-appropriate-page-file-size-for-64-bit-versions-of-windows"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["pagefile", "rejeitado", "memoria", "crash-dump"]
+  },
+  {
+    "id": "gpu-reflex-per-game",
+    "title": "Reflex por jogo e hardware compatível",
+    "category": "gpu",
+    "level": "general",
+    "summary": "Avaliar o modo de baixa latência quando o próprio jogo oferecer suporte.",
+    "mechanism": "Reflex coordena a submissão CPU/GPU para limitar fila de renderização. FPS, latência do PC e latência completa de input até o monitor são métricas distintas.",
+    "prerequisites": ["Jogo, GPU e driver compatíveis", "Configuração original do jogo registrada"],
+    "risks": [
+      "Mudança de consumo ou comportamento de clocks",
+      "Resultado varia com o gargalo e a configuração"
+    ],
+    "validation": [
+      "Comparar latência disponível e distribuição de frametimes",
+      "Registrar limite de FPS, VSync, VRR e qualidade gráfica"
+    ],
+    "rollback": "Restaurar a opção original no jogo; não impor um perfil global de driver.",
+    "evidence": 2,
+    "disposition": "manual",
+    "applicability": "Manual e condicional à lista oficial e à opção disponível na versão do jogo.",
+    "sources": [
+      {
+        "title": "NVIDIA — Reflex e latência do sistema",
+        "url": "https://www.nvidia.com/en-gb/geforce/guides/system-latency-optimization-guide/"
+      },
+      {
+        "title": "NVIDIA — produtos compatíveis com Reflex",
+        "url": "https://www.nvidia.com/en-us/geforce/technologies/reflex/supported-products/"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["nvidia", "reflex", "latencia", "fila"]
+  },
+  {
+    "id": "gpu-hags-experiment",
+    "title": "HAGS: comparação controlada",
+    "category": "gpu",
+    "level": "advanced",
+    "summary": "Tratar HAGS como variável experimental, sem afirmar ganho obrigatório.",
+    "mechanism": "Agendamento acelerado por hardware transfere parte do agendamento da GPU para hardware dedicado. A existência do recurso depende de GPU e driver.",
+    "prerequisites": [
+      "Suporte exposto no Windows alvo",
+      "Reinicialização planejada",
+      "Cenário e ferramentas de medição compatíveis"
+    ],
+    "risks": [
+      "Regressão específica de driver ou jogo",
+      "Mudança de precisão em algumas métricas de execução da GPU"
+    ],
+    "validation": [
+      "Repetir cenário antes/depois sem outras mudanças",
+      "Registrar estabilidade e limitações do coletor"
+    ],
+    "rollback": "Restaurar o estado registrado e reiniciar quando requerido; não realizado pelo aplicativo.",
+    "evidence": 4,
+    "disposition": "research",
+    "applicability": "Pesquisa; documentação de arquitetura de 2020 não confirma suporte atual de um modelo específico.",
+    "sources": [
+      {
+        "title": "Microsoft DirectX — Hardware Accelerated GPU Scheduling",
+        "url": "https://devblogs.microsoft.com/directx/hardware-accelerated-gpu-scheduling/"
+      },
+      {
+        "title": "Microsoft DirectX — opções gráficas do Windows",
+        "url": "https://devblogs.microsoft.com/directx/navigating-the-redesigned-graphics-settings-page/"
+      },
+      {
+        "title": "Intel GameTechDev — PresentMon",
+        "url": "https://github.com/GameTechDev/PresentMon"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["hags", "gpu", "agendamento", "experimental"]
+  },
+  {
+    "id": "gpu-sensor-capabilities",
+    "title": "Sensores de GPU e escopo da VRAM",
+    "category": "gpu",
+    "level": "general",
+    "summary": "Consultar sensores disponíveis sem substituir ausência por zero.",
+    "mechanism": "NVML e ADLX oferecem consultas condicionais ao hardware. O orçamento DXGI da aplicação chamadora não representa automaticamente a VRAM de um jogo ou o uso total da GPU.",
+    "prerequisites": [
+      "Modelo e driver identificados",
+      "Versões e licenças da API revisadas",
+      "Unidades, escopo e frequência de coleta definidos"
+    ],
+    "risks": ["Métricas não suportadas ou com escopos diferentes", "Sobrecarga de amostragem"],
+    "validation": [
+      "Testar respostas de indisponibilidade e troca de GPU",
+      "Conferir unidades e escopo com ferramenta do fabricante"
+    ],
+    "rollback": "Somente leitura; liberar handles e encerrar a coleta. Nenhum setter de clocks, tensão ou potência.",
+    "evidence": 3,
+    "disposition": "integration-pending",
+    "applicability": "Telemetria ainda não integrada. Temperatura, clock, energia e memória exigem suporte por métrica.",
+    "sources": [
+      {
+        "title": "NVIDIA — NVML Device Queries",
+        "url": "https://docs.nvidia.com/deploy/nvml-api/latest/api/group__nvmlDeviceQueries.html"
+      },
+      {
+        "title": "AMD GPUOpen — IADLXGPUMetricsSupport",
+        "url": "https://gpuopen.com/manuals/adlx/adlx-sdk-references/adlx-interfaces/performance-monitoring/iadlxgpumetricssupport/"
+      },
+      {
+        "title": "Microsoft — DXGI_QUERY_VIDEO_MEMORY_INFO",
+        "url": "https://learn.microsoft.com/en-us/windows/win32/api/dxgi1_4/ns-dxgi1_4-dxgi_query_video_memory_info"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["gpu", "vram", "temperatura", "clock", "potencia", "sensores"]
+  },
+  {
+    "id": "storage-reliability",
+    "title": "Saúde reportada do armazenamento",
+    "category": "storage",
+    "level": "basic",
+    "summary": "Consultar desgaste, temperatura e erros quando o dispositivo os expuser.",
+    "mechanism": "Contadores de confiabilidade descrevem informações reportadas pelo armazenamento. Campos ausentes não significam disco saudável nem falha confirmada.",
+    "prerequisites": [
+      "Identificar disco físico e controlador",
+      "Distinguir NVMe, SATA, USB e volumes virtuais"
+    ],
+    "risks": [
+      "Controladores podem ocultar contadores",
+      "Indicadores não predizem toda falha futura"
+    ],
+    "validation": [
+      "Preservar valores ausentes e unidades",
+      "Comparar com diagnóstico oficial do fabricante quando disponível"
+    ],
+    "rollback": "Somente leitura; nenhuma escrita ou teste destrutivo.",
+    "evidence": 3,
+    "disposition": "integration-pending",
+    "applicability": "Requer validar a disponibilidade da API e dos campos por dispositivo.",
+    "sources": [
+      {
+        "title": "Microsoft — MSFT_StorageReliabilityCounter",
+        "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/storage/msft-storagereliabilitycounter"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["ssd", "hdd", "smart", "nvme", "temperatura", "desgaste"]
+  },
+  {
+    "id": "storage-trim-review",
+    "title": "TRIM e otimização apropriada ao volume",
+    "category": "storage",
+    "level": "general",
+    "summary": "Verificar tipo de mídia e necessidade antes de propor manutenção do volume.",
+    "mechanism": "Optimize-Volume escolhe operações de acordo com o armazenamento; retrim não equivale a desfragmentação de HDD. A operação correta depende do tipo e suporte expostos.",
+    "prerequisites": [
+      "Mapear volume e mídia subjacente",
+      "Confirmar suporte da operação",
+      "Backup e janela de manutenção"
+    ],
+    "risks": [
+      "Carga de I/O durante manutenção",
+      "TRIM não é reversível e afeta recuperação de dados removidos"
+    ],
+    "validation": [
+      "Analisar antes de executar",
+      "Registrar status e comparar comportamento de I/O"
+    ],
+    "rollback": "Não existe desfazer genérico da disposição física/TRIM; não apresentar rollback automático.",
+    "evidence": 2,
+    "disposition": "manual",
+    "applicability": "Manual; mídia desconhecida, suporte ausente ou cenário de recuperação de dados bloqueiam recomendação.",
+    "sources": [
+      {
+        "title": "Microsoft — Optimize-Volume",
+        "url": "https://learn.microsoft.com/en-us/powershell/module/storage/optimize-volume?view=windowsserver2025-ps"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["trim", "ssd", "volume", "manutencao"]
+  },
+  {
+    "id": "input-raw-path",
+    "title": "Caminho de entrada e sensibilidade do mouse",
+    "category": "input",
+    "level": "basic",
+    "summary": "Identificar se o jogo usa Raw Input antes de associar ajustes do ponteiro ao desempenho.",
+    "mechanism": "Eventos Raw Input não seguem a velocidade configurada no painel do mouse da mesma forma que o caminho legado. Sensibilidade e latência devem ser avaliadas separadamente.",
+    "prerequisites": [
+      "Documentação ou opção de input do jogo",
+      "Perfil de DPI e sensibilidade registrado"
+    ],
+    "risks": [
+      "Alterar percepção de mira sem melhorar latência",
+      "Confundir eventos recebidos com latência física"
+    ],
+    "validation": [
+      "Comparar comportamento de mira em cenário repetível",
+      "Documentar API conhecida ou marcar como desconhecida"
+    ],
+    "rollback": "Restaurar sensibilidade e opção anteriores no jogo/dispositivo.",
+    "evidence": 3,
+    "disposition": "manual",
+    "applicability": "Manual; não inferir a API de input apenas pelo gênero ou popularidade do jogo.",
+    "sources": [
+      {
+        "title": "Microsoft — RAWMOUSE",
+        "url": "https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-rawmouse"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["mouse", "raw-input", "dpi", "sensibilidade"]
+  },
+  {
+    "id": "input-polling-ab",
+    "title": "Polling rate sob carga real",
+    "category": "input",
+    "level": "general",
+    "summary": "Comparar apenas taxas suportadas pelo dispositivo e pelo jogo.",
+    "mechanism": "Taxas altas aumentam a frequência de relatórios e podem elevar a carga de processamento. O intervalo nominal do USB não mede sozinho a latência de ponta a ponta.",
+    "prerequisites": [
+      "Dispositivo e firmware documentados",
+      "Software oficial já disponível ou instalação revisada",
+      "Cenário com movimento contínuo do mouse"
+    ],
+    "risks": [
+      "Queda de FPS ou stuttering em cargas limitadas pela CPU",
+      "Maior consumo em dispositivos sem fio"
+    ],
+    "validation": [
+      "Medir frametimes enquanto o mouse se move",
+      "Conferir perda de eventos e consistência, além da taxa nominal"
+    ],
+    "rollback": "Restaurar a taxa e o perfil originais no software oficial.",
+    "evidence": 2,
+    "disposition": "manual",
+    "applicability": "Manual; taxa máxima anunciada não é recomendação automática para toda plataforma.",
+    "sources": [
+      {
+        "title": "Razer — quedas de desempenho com polling elevado",
+        "url": "https://mysupport.razer.com/app/answers/detail/a_id/14640/kw/Which%20games%20are%20supported"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["mouse", "polling", "usb", "stuttering"]
+  },
+  {
+    "id": "latency-dpc-isr",
+    "title": "Correlação de DPC/ISR com interrupções de fluidez",
+    "category": "latency",
+    "level": "advanced",
+    "summary": "Investigar atividade de drivers no mesmo intervalo dos sintomas.",
+    "mechanism": "Eventos ETW permitem analisar duração e módulo das rotinas. Um pico isolado não prova input lag nem identifica sozinho a causa de stuttering.",
+    "prerequisites": [
+      "Captura ETW e permissões adequadas",
+      "Símbolos e cenário delimitado",
+      "Plano de privacidade e retenção"
+    ],
+    "risks": [
+      "Captura incompleta ou eventos perdidos",
+      "Atribuição causal incorreta por correlação isolada"
+    ],
+    "validation": [
+      "Repetir sintoma e correlacionar a linha do tempo",
+      "Verificar perdas da captura e confirmar hipótese com teste controlado"
+    ],
+    "rollback": "Encerrar somente a sessão de captura criada para o atendimento.",
+    "evidence": 3,
+    "disposition": "integration-pending",
+    "applicability": "Integração pendente; não executar WPR elevado ou alterar drivers implicitamente.",
+    "sources": [
+      {
+        "title": "Microsoft — eventos DPC e ISR",
+        "url": "https://learn.microsoft.com/en-us/windows/desktop/ETW/dpc"
+      },
+      {
+        "title": "Microsoft — CPU Analysis",
+        "url": "https://learn.microsoft.com/en-us/windows-hardware/test/wpt/cpu-analysis"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["dpc", "isr", "etw", "latencia", "wpa"]
+  },
+  {
+    "id": "latency-global-timer-rejected",
+    "title": "Forçar resolução de timer globalmente",
+    "category": "latency",
+    "level": "advanced",
+    "summary": "Rejeitado como correção universal de input lag ou FPS.",
+    "mechanism": "timeBeginPeriod tem semântica dependente da versão do Windows e do processo. Maior resolução pode elevar consumo e não aumenta a precisão do contador de desempenho.",
+    "prerequisites": ["Exceção exigiria problema de temporização reproduzível na aplicação"],
+    "risks": [
+      "Maior consumo e interferência no gerenciamento de energia",
+      "Aplicação a processos não solicitantes pode não ocorrer"
+    ],
+    "validation": [
+      "Manter fora de perfis automáticos",
+      "Distinguir timer de espera e relógio de medição"
+    ],
+    "rollback": "Não aplicar; ferramentas externas que mantêm pedidos de timer exigem análise própria para remoção.",
+    "evidence": 5,
+    "disposition": "rejected",
+    "applicability": "Não recomendado universalmente; investigação específica de software continua possível.",
+    "sources": [
+      {
+        "title": "Microsoft — timeBeginPeriod",
+        "url": "https://learn.microsoft.com/en-us/windows/win32/api/timeapi/nf-timeapi-timebeginperiod"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["timer", "hpet", "input-lag", "rejeitado"]
+  },
+  {
+    "id": "network-route-baseline",
+    "title": "Latência e perda de pacotes por rota",
+    "category": "network",
+    "level": "basic",
+    "summary": "Estabelecer diagnóstico de conectividade antes de alterar DNS, adaptador ou registro.",
+    "mechanism": "Pathping observa respostas ICMP e saltos da rota. Um roteador que limita respostas dirigidas a ele pode continuar encaminhando tráfego normalmente.",
+    "prerequisites": [
+      "Destino autorizado e relevante",
+      "Interface, horário e condição de carga registrados"
+    ],
+    "risks": ["Sondagens podem ser bloqueadas", "IP e rota podem revelar dados de rede"],
+    "validation": [
+      "Separar perda no destino de respostas ausentes nos saltos",
+      "Repetir em horários e condições comparáveis"
+    ],
+    "rollback": "Somente sondagem; encerrar coleta e tratar dados de rede conforme consentimento.",
+    "evidence": 3,
+    "disposition": "integration-pending",
+    "applicability": "Integração pendente. ICMP não é uma medição direta da latência interna de um jogo.",
+    "sources": [
+      {
+        "title": "Microsoft — pathping",
+        "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/pathping"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["rede", "ping", "jitter", "perda", "rota"]
+  },
+  {
+    "id": "network-rss-moderation",
+    "title": "RSS e moderação de interrupções por adaptador",
+    "category": "network",
+    "level": "general",
+    "summary": "Investigar distribuição de processamento e latência sem desativar offloads indiscriminadamente.",
+    "mechanism": "RSS distribui processamento de recepção; moderação agrupa interrupções. Mais CPUs e mais interrupções têm custos, e o melhor equilíbrio depende da carga.",
+    "prerequisites": [
+      "Modelo, driver e recursos reais do adaptador",
+      "Estado original e acesso local de recuperação"
+    ],
+    "risks": ["Perda temporária de conectividade", "Mais uso de CPU ou pior tempo de resposta"],
+    "validation": [
+      "Comparar throughput, perda, CPU e latência sob carga",
+      "Alterar uma variável por vez em ambiente controlado"
+    ],
+    "rollback": "Restaurar propriedades documentadas do adaptador; não depender de conexão remota para recuperar.",
+    "evidence": 2,
+    "disposition": "research",
+    "applicability": "Pesquisa; orientação de servidores não deve ser aplicada diretamente a todos os PCs de jogos.",
+    "sources": [
+      {
+        "title": "Microsoft — configuração de processadores RSS",
+        "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/network/setting-the-number-of-rss-processors"
+      },
+      {
+        "title": "Microsoft — Interrupt moderation",
+        "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/network/interrupt-moderation"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["rss", "nic", "offload", "interrupt-moderation"]
+  },
+  {
+    "id": "windows-startup-review",
+    "title": "Revisão de aplicativos de inicialização",
+    "category": "windows",
+    "level": "basic",
+    "summary": "Identificar itens dispensáveis com o técnico e registrar o estado original.",
+    "mechanism": "Aplicativos iniciados no logon podem consumir recursos e prolongar a inicialização. A decisão depende da função de cada item, não apenas de sua presença.",
+    "prerequisites": [
+      "Identificar editor e finalidade",
+      "Consentimento para modificar a rotina do cliente"
+    ],
+    "risks": [
+      "Perder sincronização, utilitário de periférico ou função necessária",
+      "Desativar software de proteção indevidamente"
+    ],
+    "validation": [
+      "Medir tempo de inicialização comparável",
+      "Confirmar funcionamento dos aplicativos necessários"
+    ],
+    "rollback": "Reativar exatamente os itens alterados e verificar após novo logon.",
+    "evidence": 2,
+    "disposition": "manual",
+    "applicability": "Manual; itens desconhecidos, segurança e gerenciamento corporativo exigem revisão.",
+    "sources": [
+      {
+        "title": "Microsoft — aplicativos de inicialização",
+        "url": "https://support.microsoft.com/en-US/Windows/Experience/Startup-Boot/configure-startup-applications-in-windows"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["windows", "startup", "inicializacao", "background"]
+  },
+  {
+    "id": "windows-windowed-flip",
+    "title": "Otimizações de apresentação em janela",
+    "category": "windows",
+    "level": "general",
+    "summary": "Avaliar a configuração por jogo DirectX 10/11 no Windows 11.",
+    "mechanism": "O recurso migra jogos compatíveis do modelo blt para flip em janela/borderless e pode habilitar recursos de apresentação associados.",
+    "prerequisites": [
+      "Windows 11 e jogo compatível",
+      "Estado de Auto HDR e preferências por aplicativo conhecido"
+    ],
+    "risks": ["Regressões específicas de apresentação", "Interação com HDR e reinício do jogo"],
+    "validation": [
+      "Repetir captura no mesmo modo de janela",
+      "Verificar imagem, latência disponível e frametimes"
+    ],
+    "rollback": "Restaurar a preferência específica e reiniciar o jogo; preservar o estado original de HDR.",
+    "evidence": 2,
+    "disposition": "manual",
+    "applicability": "Manual; não extrapolar para todos os jogos, APIs ou modos de apresentação.",
+    "sources": [
+      {
+        "title": "Microsoft — otimizações para jogos em janela",
+        "url": "https://support.microsoft.com/en-us/windows/hardware/display-graphics/optimizations-for-windowed-games-in-windows-11"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["flip-model", "borderless", "directx", "windows-11"]
+  },
+  {
+    "id": "bios-resizable-bar-review",
+    "title": "Resizable BAR: requisitos completos",
+    "category": "bios",
+    "level": "advanced",
+    "summary": "Conferir a cadeia CPU, placa, firmware, GPU e driver antes de orientar ReBAR.",
+    "mechanism": "O recurso amplia a forma de acesso da CPU à memória gráfica. Suporte e política por jogo dependem da plataforma; a referência RTX 30 não certifica outras gerações.",
+    "prerequisites": [
+      "Manual da placa e modo de boot",
+      "VBIOS e driver compatíveis",
+      "Backup de configurações e recuperação de boot"
+    ],
+    "risks": [
+      "Incompatibilidade ou regressão por jogo",
+      "Mudança de CSM/UEFI pode afetar inicialização"
+    ],
+    "validation": [
+      "Confirmar suporte ativo na ferramenta do fabricante",
+      "Comparar jogos relevantes com cenários iguais"
+    ],
+    "rollback": "Restaurar opções anteriores da BIOS conforme manual; não converter disco ou boot automaticamente.",
+    "evidence": 2,
+    "disposition": "manual",
+    "applicability": "Manual; nenhuma capacidade foi confirmada para a máquina atual.",
+    "sources": [
+      {
+        "title": "NVIDIA — requisitos e limites de Resizable BAR na RTX 30",
+        "url": "https://www.nvidia.com/en-gb/geforce/news/geforce-rtx-30-series-resizable-bar-support/"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["bios", "rebar", "resizable-bar", "above-4g"]
+  },
+  {
+    "id": "bios-firmware-preflight",
+    "title": "Preparação para atualização de firmware",
+    "category": "bios",
+    "level": "advanced",
+    "summary": "Revisar necessidade, arquivo correto, proteção de dados e recuperação antes de qualquer atualização.",
+    "mechanism": "Atualizações podem corrigir problemas específicos, mas requerem procedimento do modelo. Alterações de boot podem acionar recuperação BitLocker; downgrade nem sempre é permitido.",
+    "prerequisites": [
+      "Modelo e revisão exatos",
+      "Release notes com motivo pertinente",
+      "Backup, alimentação estável e chave de recuperação sob controle do cliente"
+    ],
+    "risks": [
+      "Falha de boot por interrupção ou imagem incorreta",
+      "Rollback de firmware indisponível",
+      "Exposição se proteção ficar suspensa"
+    ],
+    "validation": [
+      "Conferir versão e hash/assinatura quando fornecidos",
+      "Verificar boot, proteção e estabilidade após intervenção autorizada"
+    ],
+    "rollback": "Somente método suportado pelo fabricante; não há rollback genérico nem garantia de downgrade.",
+    "evidence": 3,
+    "disposition": "manual",
+    "applicability": "Orientação manual. Guia ASUS é exemplo de procedimento específico, não instrução universal para outras placas.",
+    "sources": [
+      {
+        "title": "ASUS — atualização e possibilidade de downgrade de BIOS",
+        "url": "https://www.asus.com/in/support/faq/1044348/"
+      },
+      {
+        "title": "Microsoft — BitLocker FAQ e firmware",
+        "url": "https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/faq"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["bios", "uefi", "firmware", "bitlocker", "recuperacao"]
+  },
+  {
+    "id": "power-mode-comparison",
+    "title": "Modo de energia por objetivo de atendimento",
+    "category": "power",
+    "level": "basic",
+    "summary": "Comparar equilíbrio, desempenho e autonomia com o objetivo do cliente.",
+    "mechanism": "O modo de energia influencia o compromisso de desempenho e consumo. O perfil mais agressivo não garante melhor desempenho sustentado.",
+    "prerequisites": ["Modo atual registrado", "Estado AC/bateria e perfil térmico OEM"],
+    "risks": [
+      "Mais calor, ruído e consumo",
+      "Pior autonomia ou desempenho sustentado por limite térmico"
+    ],
+    "validation": [
+      "Comparar duração da tarefa, fluidez e autonomia relevante",
+      "Repetir com temperatura inicial semelhante"
+    ],
+    "rollback": "Restaurar modo anterior e verificar separadamente AC e bateria.",
+    "evidence": 2,
+    "disposition": "manual",
+    "applicability": "Manual; opções e efeitos variam por dispositivo, plano e edição do Windows.",
+    "sources": [
+      {
+        "title": "Microsoft — modo de energia",
+        "url": "https://support.microsoft.com/en-us/windows/change-the-power-mode-for-your-windows-pc-c2aff038-22c9-f46d-5ca0-78696fdf2de8"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["energia", "power-plan", "bateria", "eficiencia"]
+  },
+  {
+    "id": "power-standby-diagnostics",
+    "title": "Diagnóstico de suspensão e bateria",
+    "category": "power",
+    "level": "general",
+    "summary": "Investigar consumo em repouso e motivos de bloqueio de suspensão.",
+    "mechanism": "Powercfg oferece relatórios de energia, bateria e transições de repouso. SleepStudy depende do cenário de Modern Standby; relatórios distintos não têm o mesmo escopo.",
+    "prerequisites": [
+      "Identificar estados de suspensão disponíveis",
+      "Permissões específicas da opção",
+      "Período e condição de uso conhecidos"
+    ],
+    "risks": [
+      "Relatórios contêm histórico de uso",
+      "Relatório fora do cenário correto pode induzir diagnóstico equivocado"
+    ],
+    "validation": [
+      "Conferir timestamps e origem dos dados",
+      "Separar capacidade de bateria reportada de medição de potência instantânea"
+    ],
+    "rollback": "Somente diagnóstico; não criar overrides de suspensão nem alterar plano.",
+    "evidence": 3,
+    "disposition": "integration-pending",
+    "applicability": "Integração pendente; não interpretar ausência de bateria ou Modern Standby como falha.",
+    "sources": [
+      {
+        "title": "Microsoft — opções do powercfg",
+        "url": "https://learn.microsoft.com/en-us/windows-hardware/design/device-experiences/powercfg-command-line-options"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["sleepstudy", "bateria", "standby", "energia"]
+  },
+  {
+    "id": "drivers-supported-package",
+    "title": "Drivers oficiais com revisão de compatibilidade",
+    "category": "drivers",
+    "level": "basic",
+    "summary": "Revisar necessidade e pacote correto para o dispositivo identificado.",
+    "mechanism": "Atualizações podem corrigir falhas documentadas; versão mais recente não constitui prova de ganho. Pacotes de chipset variam por CPU, chipset e Windows.",
+    "prerequisites": [
+      "Hardware ID, fornecedor, versão e arquitetura",
+      "Release notes e origem oficial",
+      "Pacote anterior disponível quando necessário"
+    ],
+    "risks": [
+      "Regressão, reinicialização e interrupção de dispositivos",
+      "Instalador pode mudar vários componentes"
+    ],
+    "validation": [
+      "Verificar assinatura e versão resultante",
+      "Repetir o sintoma e testar funções dependentes"
+    ],
+    "rollback": "Usar reversão suportada ou pacote anterior revisado; disponibilidade deve ser confirmada antes.",
+    "evidence": 3,
+    "disposition": "manual",
+    "applicability": "Manual. Não instalar em massa nem desativar antivírus para facilitar instaladores.",
+    "sources": [
+      {
+        "title": "Microsoft — atualização e reversão de drivers",
+        "url": "https://support.microsoft.com/en-us/windows/update-drivers-through-device-manager-in-windows-ec62f46c-ff14-c91d-eead-d7126dc1f7b6"
+      },
+      {
+        "title": "AMD — instalação de drivers de chipset",
+        "url": "https://www.amd.com/en/resources/support-articles/faqs/CHIPSET-INSTALL.html"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["driver", "chipset", "whql", "compatibilidade"]
+  },
+  {
+    "id": "drivers-regression-rollback",
+    "title": "Reversão de driver após regressão confirmada",
+    "category": "drivers",
+    "level": "general",
+    "summary": "Relacionar uma falha a atualização recente antes de propor retorno.",
+    "mechanism": "A reversão do Gerenciador de Dispositivos depende de um driver anterior disponível. Sem pacote anterior, a opção pode estar indisponível.",
+    "prerequisites": [
+      "Linha do tempo da falha",
+      "Pacote anterior conhecido e compatível",
+      "Acesso local e reinício planejado"
+    ],
+    "risks": [
+      "Perder correções de segurança ou suporte recente",
+      "Restauração pode não resolver a causa"
+    ],
+    "validation": [
+      "Comparar o mesmo cenário antes/depois",
+      "Confirmar versão, assinatura e dispositivos funcionais"
+    ],
+    "rollback": "Reinstalar o pacote mais recente revisado se necessário; manter os dois estados documentados.",
+    "evidence": 3,
+    "disposition": "manual",
+    "applicability": "Manual; requer privilégios adequados e caminho de recuperação verificado.",
+    "sources": [
+      {
+        "title": "Microsoft — diagnóstico de cintilação e reversão de driver",
+        "url": "https://support.microsoft.com/en-us/windows/hardware/display-graphics/troubleshoot-screen-flickering-in-windows"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["driver", "rollback", "regressao", "reparo"]
+  },
+  {
+    "id": "processes-resource-investigation",
+    "title": "Investigação de processos em segundo plano",
+    "category": "processes",
+    "level": "general",
+    "summary": "Relacionar consumo e atividade de processos ao sintoma observado.",
+    "mechanism": "Process Explorer permite examinar processos, handles e módulos. Um nome desconhecido ou processo com muitas threads não comprova que seja dispensável.",
+    "prerequisites": [
+      "Editor, processo e dependências identificados",
+      "Janela temporal e objetivo de investigação"
+    ],
+    "risks": [
+      "Dados de processo podem conter informações privadas",
+      "Encerramento indiscriminado pode perder trabalho"
+    ],
+    "validation": [
+      "Registrar atividade durante a ocorrência",
+      "Confirmar hipótese preservando funções essenciais"
+    ],
+    "rollback": "Somente inspeção nesta etapa; não encerrar processos nem alterar serviços.",
+    "evidence": 3,
+    "disposition": "integration-pending",
+    "applicability": "Integração pendente; ferramenta externa deve ter versão, licença e assinatura revisadas antes do uso.",
+    "sources": [
+      {
+        "title": "Microsoft Sysinternals — Process Explorer",
+        "url": "https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["processos", "servicos", "handles", "sysinternals"]
+  },
+  {
+    "id": "processes-realtime-rejected",
+    "title": "Prioridade Realtime para jogos",
+    "category": "processes",
+    "level": "advanced",
+    "summary": "Rejeitada como perfil de otimização.",
+    "mechanism": "Prioridades elevadas podem impedir trabalho essencial de threads do sistema. Realtime pode interferir com entrada e tarefas de I/O; não representa mais capacidade de processamento.",
+    "prerequisites": ["Nenhum pré-requisito torna o perfil genérico apropriado"],
+    "risks": ["Sistema sem resposta", "Interferência em teclado, mouse e gravação"],
+    "validation": [
+      "Bloquear seleção em perfis executáveis",
+      "Investigar concorrência antes de mudar prioridades"
+    ],
+    "rollback": "Não aplicar; eventual estado prévio deve ser identificado antes de restaurar uma prioridade apropriada.",
+    "evidence": 5,
+    "disposition": "rejected",
+    "applicability": "Rejeição da prioridade Realtime genérica; não impede estudo de QoS com escopo específico.",
+    "sources": [
+      {
+        "title": "Microsoft — Scheduling Priorities",
+        "url": "https://learn.microsoft.com/en-us/windows/win32/procthread/scheduling-priorities"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["realtime", "prioridade", "agendamento", "rejeitado"]
+  },
+  {
+    "id": "games-file-integrity",
+    "title": "Integridade de arquivos de um jogo Steam",
+    "category": "games",
+    "level": "basic",
+    "summary": "Investigar conteúdo ausente ou falhas com a verificação oficial do launcher.",
+    "mechanism": "A verificação compara arquivos da instalação e pode recuperar conteúdo. Alguns arquivos locais de configuração não seguem a mesma regra de validação.",
+    "prerequisites": [
+      "Jogo e launcher identificados",
+      "Dados locais e modificações preservados",
+      "Espaço e conectividade suficientes"
+    ],
+    "risks": [
+      "Download e substituição de arquivos modificados",
+      "Carga de disco interfere em benchmarks simultâneos"
+    ],
+    "validation": [
+      "Reproduzir problema após verificação",
+      "Guardar resultado do launcher sem declarar FPS adicional"
+    ],
+    "rollback": "Não há desfazer genérico de arquivos reparados; preservar modificações autorizadas antes.",
+    "evidence": 3,
+    "disposition": "manual",
+    "applicability": "Manual para Steam; outros launchers exigem documentação e adaptador próprios.",
+    "sources": [
+      {
+        "title": "Valve — verificação de integridade de jogos",
+        "url": "https://help.steampowered.com/en/faqs/view/0C48-FCBD-DA71-93EB"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["jogos", "steam", "integridade", "crash"]
+  },
+  {
+    "id": "games-presentmon-capture",
+    "title": "Frametimes reais com PresentMon",
+    "category": "games",
+    "level": "general",
+    "summary": "Planejar captura de eventos de apresentação por processo, sem valores simulados.",
+    "mechanism": "PresentMon analisa eventos gráficos do Windows. Apresentação, quadros exibidos, geração de frames e latência física não são a mesma população de dados.",
+    "prerequisites": [
+      "Release e esquema de CSV revisados",
+      "Processo, swapchain e permissões identificados",
+      "Cenário, aquecimento e configurações registrados"
+    ],
+    "risks": [
+      "Eventos perdidos e overhead do coletor",
+      "Limitações dependentes da API gráfica e HAGS"
+    ],
+    "validation": [
+      "Preservar captura bruta e verificar população",
+      "Repetir cenário e reportar variabilidade, sem afirmar ganho dentro do ruído"
+    ],
+    "rollback": "Encerrar apenas a captura da sessão; nenhum ajuste de jogo ou do Windows.",
+    "evidence": 3,
+    "disposition": "integration-pending",
+    "applicability": "Integração pendente. Referência auditada: commit 9db97248df5322a0aa1581d9141d1de6b058085b; não é versão de produção selecionada.",
+    "sources": [
+      {
+        "title": "Intel GameTechDev — PresentMon",
+        "url": "https://github.com/GameTechDev/PresentMon"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["presentmon", "fps", "frametime", "stuttering", "benchmark"]
+  },
+  {
+    "id": "peripherals-refresh-rate",
+    "title": "Taxa de atualização e modo do monitor",
+    "category": "peripherals",
+    "level": "basic",
+    "summary": "Conferir resolução, conexão e taxa efetivamente configurada.",
+    "mechanism": "A taxa de atualização define a frequência de renovação da tela. Modos disponíveis dependem de monitor e conexão; aumentar Hz não cria frames adicionais no jogo.",
+    "prerequisites": ["Monitor e porta identificados", "Resolução, HDR e taxa atual registrados"],
+    "risks": [
+      "Mudança de resolução para obter outra taxa",
+      "Maior consumo ou incompatibilidade de modo"
+    ],
+    "validation": [
+      "Confirmar modo ativo após mudança",
+      "Avaliar imagem, estabilidade e fluidez no jogo relevante"
+    ],
+    "rollback": "Restaurar modo anterior usando o mecanismo de confirmação do Windows.",
+    "evidence": 2,
+    "disposition": "manual",
+    "applicability": "Manual; distinguir DRR de VRR e verificar a combinação específica de monitor e driver.",
+    "sources": [
+      {
+        "title": "Microsoft — taxa de atualização do monitor",
+        "url": "https://support.microsoft.com/en-gb/windows/hardware/display-graphics/change-the-refresh-rate-on-your-monitor-in-windows?nochrome=true"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["monitor", "hz", "refresh-rate", "vrr", "dpi"]
+  },
+  {
+    "id": "peripherals-usb-suspend-rejected",
+    "title": "Desativar suspensão USB em todos os dispositivos",
+    "category": "peripherals",
+    "level": "advanced",
+    "summary": "Rejeitado como ajuste universal de latência.",
+    "mechanism": "Suspensão seletiva administra energia de dispositivos ociosos. A Microsoft recomenda preservar o mecanismo geral; HID tem requisitos específicos de retomada.",
+    "prerequisites": ["Falha específica exigiria diagnóstico do dispositivo e driver"],
+    "risks": [
+      "Mais consumo e impedimento de estados de baixo consumo",
+      "Remoção de economia sem benefício demonstrado"
+    ],
+    "validation": [
+      "Manter fora da aplicação em lote",
+      "Reproduzir eventual atraso de retomada antes de propor exceção"
+    ],
+    "rollback": "Não aplicar; recuperar somente alterações previamente identificadas por dispositivo/plano.",
+    "evidence": 5,
+    "disposition": "rejected",
+    "applicability": "Rejeição global; comportamento HID e bugs de driver devem ser investigados individualmente.",
+    "sources": [
+      {
+        "title": "Microsoft — USB selective suspend",
+        "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-selective-suspend"
+      },
+      {
+        "title": "Microsoft — suspensão seletiva em HID USB",
+        "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/hid/selective-suspend-for-hid-over-usb-devices"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["usb", "hid", "energia", "rejeitado"]
+  },
+  {
+    "id": "audio-enhancement-isolation",
+    "title": "Isolar efeitos de áudio em falhas de reprodução",
+    "category": "audio",
+    "level": "basic",
+    "summary": "Comparar efeitos do dispositivo apenas quando houver estalos, distorção ou falha.",
+    "mechanism": "Efeitos de áudio podem interferir em determinadas combinações. Desativá-los temporariamente é uma etapa de diagnóstico, não um ganho universal de desempenho.",
+    "prerequisites": [
+      "Dispositivo de saída/entrada correto",
+      "Efeitos e formato originais registrados"
+    ],
+    "risks": [
+      "Perda de processamento necessário, espacialização ou qualidade",
+      "Mascarar causa real do problema"
+    ],
+    "validation": [
+      "Reproduzir áudio e comunicação no mesmo cenário",
+      "Restaurar efeitos caso não haja melhora verificável"
+    ],
+    "rollback": "Restaurar os efeitos e formato do endpoint alterado.",
+    "evidence": 3,
+    "disposition": "manual",
+    "applicability": "Manual; a presença das opções depende do driver e do dispositivo.",
+    "sources": [
+      {
+        "title": "Microsoft — diagnóstico de áudio",
+        "url": "https://support.microsoft.com/en-US/Windows/Hardware/Audio/fix-sound-or-audio-problems-in-windows"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["audio", "apo", "estalos", "som"]
+  },
+  {
+    "id": "audio-buffer-latency",
+    "title": "Buffers de áudio e latência com estabilidade",
+    "category": "audio",
+    "level": "advanced",
+    "summary": "Investigar o menor buffer suportado que preserve áudio sem interrupções.",
+    "mechanism": "WASAPI/AudioGraph e o driver determinam períodos disponíveis. Buffer pequeno exige atendimento mais frequente; um ajuste externo não força todos os aplicativos a usar a mesma API.",
+    "prerequisites": [
+      "Driver e aplicação compatíveis",
+      "Rota de áudio e formato conhecidos",
+      "Medição de roundtrip com método definido"
+    ],
+    "risks": [
+      "Estalos, underruns e maior consumo",
+      "Modo exclusivo pode bloquear outros aplicativos"
+    ],
+    "validation": [
+      "Medir latência e interrupções simultaneamente",
+      "Testar comunicação e carga real concorrente"
+    ],
+    "rollback": "Restaurar buffer, modo e formato originais na aplicação apropriada.",
+    "evidence": 2,
+    "disposition": "research",
+    "applicability": "Pesquisa; nenhuma promessa de latência baseada apenas no valor configurado.",
+    "sources": [
+      {
+        "title": "Microsoft — Low Latency Audio",
+        "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/low-latency-audio"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["audio", "wasapi", "buffer", "latencia"]
+  },
+  {
+    "id": "security-protection-inventory",
+    "title": "Estado de integridade de memória e proteções",
+    "category": "security",
+    "level": "basic",
+    "summary": "Registrar o estado de VBS/HVCI e limitações sem alterar a proteção.",
+    "mechanism": "Integridade de memória usa isolamento para proteger integridade de código do kernel. Suporte e impacto dependem da plataforma e de compatibilidade de drivers.",
+    "prerequisites": [
+      "Versão do Windows e política organizacional",
+      "Método de consulta e permissões definidos"
+    ],
+    "risks": [
+      "Confundir configuração solicitada com proteção em execução",
+      "Expor informações sensíveis em relatórios"
+    ],
+    "validation": [
+      "Distinguir habilitado, em execução e indisponível",
+      "Verificar inconsistências sem desativar recursos"
+    ],
+    "rollback": "Somente inventário; nenhuma alteração de proteção.",
+    "evidence": 3,
+    "disposition": "integration-pending",
+    "applicability": "Integração pendente; não presumir suporte a partir de um único indicador.",
+    "sources": [
+      {
+        "title": "Microsoft — integridade de memória e VBS",
+        "url": "https://learn.microsoft.com/en-us/windows/security/hardware-security/enable-virtualization-based-protection-of-code-integrity"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["seguranca", "vbs", "hvci", "integridade"]
+  },
+  {
+    "id": "security-defender-performance",
+    "title": "Diagnóstico de custo do Microsoft Defender",
+    "category": "security",
+    "level": "advanced",
+    "summary": "Investigar custo de varredura antes de considerar qualquer exceção.",
+    "mechanism": "O analisador identifica arquivos e processos associados ao tempo de varredura. Seus resultados não constituem recomendação automática de exclusões.",
+    "prerequisites": [
+      "Defender e comandos suportados",
+      "Permissões de captura",
+      "Arquivos de diagnóstico protegidos"
+    ],
+    "risks": ["Captura revela caminhos e processos", "Excluir itens pode reduzir proteção"],
+    "validation": [
+      "Verificar reprodução e impacto da coleta",
+      "Encaminhar causa específica mantendo a proteção ativa"
+    ],
+    "rollback": "Encerrar captura; não criar exclusões ou modificar antivírus.",
+    "evidence": 3,
+    "disposition": "integration-pending",
+    "applicability": "Integração pendente; políticas corporativas e disponibilidade precisam ser verificadas.",
+    "sources": [
+      {
+        "title": "Microsoft — Defender Performance Analyzer",
+        "url": "https://learn.microsoft.com/en-us/defender-endpoint/performance-analyzer-reference"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["defender", "antivirus", "profiling", "seguranca"]
+  },
+  {
+    "id": "security-disable-protections-rejected",
+    "title": "Desativar proteções como preset de FPS",
+    "category": "security",
+    "level": "advanced",
+    "summary": "Rejeitado: remover proteção do kernel ou antivírus em lote para prometer FPS.",
+    "mechanism": "Há custos e incompatibilidades que merecem diagnóstico, mas perda de proteção não pode ser tratada como melhoria gratuita ou universal.",
+    "prerequisites": [
+      "Exceção exigiria análise de ameaça, necessidade específica e decisão informada"
+    ],
+    "risks": [
+      "Maior exposição a código malicioso e drivers vulneráveis",
+      "Conflito com políticas de segurança"
+    ],
+    "validation": [
+      "Impedir execução em perfis automáticos",
+      "Preferir diagnóstico de incompatibilidade e correções suportadas"
+    ],
+    "rollback": "Não aplicar. Qualquer restauração de estado externo exige inventário e revisão específica.",
+    "evidence": 5,
+    "disposition": "rejected",
+    "applicability": "Rejeição de preset genérico; não afirma ausência de todo impacto de desempenho.",
+    "sources": [
+      {
+        "title": "Microsoft — integridade de memória e VBS",
+        "url": "https://learn.microsoft.com/en-us/windows/security/hardware-security/enable-virtualization-based-protection-of-code-integrity"
+      },
+      {
+        "title": "Microsoft — Defender Performance Analyzer",
+        "url": "https://learn.microsoft.com/en-us/defender-endpoint/performance-analyzer-reference"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["seguranca", "antivirus", "vbs", "rejeitado"]
+  },
+  {
+    "id": "maintenance-storage-review",
+    "title": "Espaço livre e limpeza com seleção explícita",
+    "category": "maintenance",
+    "level": "basic",
+    "summary": "Revisar arquivos elegíveis antes de qualquer remoção.",
+    "mechanism": "Storage Sense administra categorias de conteúdo e políticas de retenção. Liberação de espaço é uma medida de manutenção; não comprova aumento de FPS.",
+    "prerequisites": [
+      "Categorias e arquivos revisados pelo cliente",
+      "Backup do conteúdo necessário"
+    ],
+    "risks": ["Remoção permanente de itens", "Conteúdo de nuvem pode ficar indisponível offline"],
+    "validation": [
+      "Conferir bytes liberados e arquivos preservados",
+      "Verificar retenção configurada sem executar limpeza automática"
+    ],
+    "rollback": "Arquivos removidos podem não ser recuperáveis; restauração depende de backup real.",
+    "evidence": 3,
+    "disposition": "manual",
+    "applicability": "Manual; não autorizar Downloads, Lixeira ou instalação anterior por padrão.",
+    "sources": [
+      {
+        "title": "Microsoft — Storage Sense",
+        "url": "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/manage-drive-space-with-storage-sense"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["limpeza", "espaco", "storage-sense", "backup"]
+  },
+  {
+    "id": "maintenance-registry-cleaner-rejected",
+    "title": "Limpeza genérica de registro para desempenho",
+    "category": "maintenance",
+    "level": "advanced",
+    "summary": "Rejeitada sem parâmetro específico, sintoma e evidência de benefício.",
+    "mechanism": "Remover entradas por parecerem antigas não estabelece relação causal com desempenho. A documentação alerta para impactos de alterações incorretas no registro.",
+    "prerequisites": [
+      "Ajuste legítimo exigiria chave documentada, estado e finalidade identificados"
+    ],
+    "risks": [
+      "Aplicativos ou Windows podem deixar de funcionar",
+      "Backup genérico não garante recuperação completa"
+    ],
+    "validation": [
+      "Manter fora de recomendações executáveis",
+      "Investigar configuração específica quando houver falha reproduzível"
+    ],
+    "rollback": "Não aplicar. Recuperação de alteração externa depende do backup e do componente afetado.",
+    "evidence": 5,
+    "disposition": "rejected",
+    "applicability": "Decisão editorial do catálogo baseada em ausência de justificativa específica; não certifica limpadores de terceiros.",
+    "sources": [
+      {
+        "title": "Microsoft — ferramentas de configuração e riscos do registro",
+        "url": "https://support.microsoft.com/en-us/windows/experience/system-configuration-tools-in-windows?tw_p=twt"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["registro", "registry", "limpeza", "rejeitado"]
+  },
+  {
+    "id": "repair-component-integrity",
+    "title": "Reparo de integridade com DISM e SFC",
+    "category": "repair",
+    "level": "general",
+    "summary": "Usar ferramentas oficiais quando houver indício de corrupção de componentes.",
+    "mechanism": "DISM pode reparar a imagem de componentes; SFC verifica arquivos protegidos. Reparo modifica arquivos do sistema e não é benchmark nem ação somente leitura.",
+    "prerequisites": [
+      "Sintoma e logs registrados",
+      "Backup e fonte de reparo compatível",
+      "Permissão administrativa e janela de manutenção"
+    ],
+    "risks": [
+      "Reparo não resolve toda falha",
+      "Origem de arquivos incorreta ou operação interrompida"
+    ],
+    "validation": [
+      "Conferir resultado e logs detalhados",
+      "Reproduzir a função afetada após reparo"
+    ],
+    "rollback": "Sem desfazer individual universal; recuperação exige backup ou mecanismo de recuperação do sistema.",
+    "evidence": 3,
+    "disposition": "manual",
+    "applicability": "Manual; nenhum comando de reparação é executado pelo catálogo.",
+    "sources": [
+      {
+        "title": "Microsoft — reparo de arquivos do sistema",
+        "url": "https://support.microsoft.com/en-us/windows/experience/backup-recovery/use-the-system-file-checker-tool-to-repair-missing-or-corrupted-system-files"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["dism", "sfc", "corrupcao", "reparo"]
+  },
+  {
+    "id": "repair-whea-review",
+    "title": "Eventos WHEA e estabilidade do hardware",
+    "category": "repair",
+    "level": "basic",
+    "summary": "Consultar erros de hardware reportados antes de atribuir instabilidade a um componente.",
+    "mechanism": "WHEA registra eventos com dados da condição de erro. O evento precisa de contexto; sua ausência não comprova estabilidade e um evento isolado não condena uma peça.",
+    "prerequisites": [
+      "Janela temporal do sintoma",
+      "Permissões e política de retenção",
+      "Configuração e mudanças recentes registradas"
+    ],
+    "risks": [
+      "Interpretação incorreta do componente envolvido",
+      "Logs incompletos ou apagados limitam conclusões"
+    ],
+    "validation": [
+      "Relacionar recorrência e estado do equipamento",
+      "Validar hipótese com diagnóstico específico e controlado"
+    ],
+    "rollback": "Somente leitura; não limpar o log nem alterar firmware.",
+    "evidence": 3,
+    "disposition": "integration-pending",
+    "applicability": "Integração pendente; preservar dados ausentes e diferentes gravidades de erro.",
+    "sources": [
+      {
+        "title": "Microsoft — WHEA Hardware Error Events",
+        "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/whea/whea-hardware-error-events"
+      }
+    ],
+    "reviewedAt": "2026-10-23",
+    "tags": ["whea", "estabilidade", "hardware", "erros", "logs"]
+  }
+]

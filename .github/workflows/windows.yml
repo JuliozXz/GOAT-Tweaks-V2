@@ -1,0 +1,168 @@
+name: Windows validation and installer
+
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      bootstrap_cargo_lock:
+        description: Generate a candidate Cargo.lock only if it is absent; review and commit it afterwards
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows:
+    name: Windows x64 checks and unsigned NSIS
+    runs-on: windows-2025
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      CI: "true"
+      RUSTUP_TOOLCHAIN: 1.99.1-x86_64-pc-windows-msvc
+      CARGO_TERM_COLOR: always
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Node 24
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24.22.1
+          package-manager-cache: false
+
+      - name: Install pinned pnpm into the temporary runner directory
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $pnpmDirectory = Join-Path $env:RUNNER_TEMP 'goat-pnpm'
+          npm install --prefix $pnpmDirectory --no-package-lock --no-save --ignore-scripts --no-audit --no-fund pnpm@11.25.0
+          if ($LASTEXITCODE -ne 0) { throw "pnpm installation failed: $LASTEXITCODE" }
+          Join-Path $pnpmDirectory 'node_modules/.bin' | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+
+      - name: Install frozen frontend dependencies without lifecycle scripts
+        run: |
+          pnpm --version
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          pnpm install --frozen-lockfile --ignore-scripts
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Validate frontend and launcher
+        run: |
+          pnpm typecheck
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          pnpm lint
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          pnpm format:check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          pnpm test
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          pnpm test:launcher
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          pnpm test:inventory
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          pnpm build
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Install project browser and test frontend
+        run: |
+          pnpm test:browser:install
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          pnpm test:e2e
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Prepare pinned Rust toolchain on the hosted MSVC runner
+        run: |
+          rustup toolchain install 1.99.1-x86_64-pc-windows-msvc --profile minimal --component rustfmt --component clippy
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          rustc --version
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo --version
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Require reviewed Cargo.lock or bootstrap an explicit candidate
+        env:
+          BOOTSTRAP_CARGO_LOCK: ${{ github.event_name == 'workflow_dispatch' && inputs.bootstrap_cargo_lock }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if (-not (Test-Path -LiteralPath 'src-tauri/Cargo.lock')) {
+            if ($env:BOOTSTRAP_CARGO_LOCK -ne 'true') {
+              throw 'Cargo.lock is absent. Run workflow_dispatch with bootstrap_cargo_lock=true once; review and commit the generated candidate before normal CI.'
+            }
+            cargo generate-lockfile --manifest-path src-tauri/Cargo.toml
+            if ($LASTEXITCODE -ne 0) { throw "Cargo lockfile generation failed: $LASTEXITCODE" }
+            Write-Output '::warning::First native resolution: generated Cargo.lock is a review candidate, not an approved dependency update.'
+          }
+
+      - name: Preserve Cargo resolution for review even if native build fails
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: cargo-lock-${{ github.run_id }}-${{ github.run_attempt }}
+          path: src-tauri/Cargo.lock
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Validate Rust
+        run: |
+          cargo fmt --manifest-path src-tauri/Cargo.toml --check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo clippy --manifest-path src-tauri/Cargo.toml --locked --all-targets -- -D warnings
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo test --manifest-path src-tauri/Cargo.toml --locked --all-targets
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Build unsigned per-user NSIS installer
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $overlayPath = Join-Path $env:RUNNER_TEMP 'goat-tauri-ci.json'
+          @{
+            bundle = @{
+              active = $true
+              targets = @('nsis')
+              createUpdaterArtifacts = $false
+              windows = @{
+                webviewInstallMode = @{ type = 'skip' }
+                nsis = @{ installMode = 'currentUser' }
+              }
+            }
+          } | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $overlayPath -Encoding utf8
+          pnpm tauri build --ci --target x86_64-pc-windows-msvc --bundles nsis --no-sign --config $overlayPath -- --locked
+          if ($LASTEXITCODE -ne 0) { throw "Native packaging failed: $LASTEXITCODE" }
+          $installers = @(Get-ChildItem -LiteralPath 'src-tauri/target/x86_64-pc-windows-msvc/release/bundle/nsis' -Filter '*.exe' -File)
+          if ($installers.Count -eq 0) { throw 'Build returned without an NSIS installer.' }
+          $checksumLines = foreach ($installer in $installers) {
+            $hash = (Get-FileHash -LiteralPath $installer.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+            "$hash  $($installer.Name)"
+          }
+          $checksumLines | Set-Content -LiteralPath 'src-tauri/target/x86_64-pc-windows-msvc/release/bundle/nsis/SHA256SUMS.txt' -Encoding utf8
+
+      - name: Preserve unsigned installer for manual validation
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: goat-hub-windows-x64-unsigned-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            src-tauri/target/x86_64-pc-windows-msvc/release/bundle/nsis/*.exe
+            src-tauri/target/x86_64-pc-windows-msvc/release/bundle/nsis/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Preserve frontend test evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: frontend-tests-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: warn
+          retention-days: 7

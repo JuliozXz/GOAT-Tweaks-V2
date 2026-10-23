@@ -1,0 +1,9 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main-window",
+  "description": "Main local window without privileged IPC permissions.",
+  "windows": ["main"],
+  "platforms": ["windows"],
+  "local": true,
+  "permissions": []
+}

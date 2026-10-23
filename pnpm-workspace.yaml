@@ -1,0 +1,7 @@
+packages:
+  - .
+minimumReleaseAge: 1440
+ignoreScripts: true
+saveExact: true
+storeDir: .pnpm-store
+cacheDir: .pnpm-cache
