@@ -1,6 +1,6 @@
 # Build Windows no GitHub Actions
 
-Preparado em 23/10/2026. O workflow `.github/workflows/windows.yml` está implementado localmente; **não foi executado no GitHub, não gerou um instalador nesta sessão e não publicou release**. Git remoto, upload do repositório e início de execução remota continuam sendo ações separadas. Não há credenciais ou certificado de assinatura no projeto.
+Preparado em 23/10/2026. O workflow `.github/workflows/windows.yml` foi publicado e reconhecido como ativo pela API GitHub. **Não foi executado no GitHub, não gerou um instalador nesta sessão e não publicou release**. O envio das fontes não dispara este workflow: a configuração aceita PR e execução manual. Não há credenciais ou certificado de assinatura no projeto.
 
 ## Fluxo previsto
 

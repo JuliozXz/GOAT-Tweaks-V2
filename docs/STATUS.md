@@ -7,8 +7,8 @@ Atualizado em **23/10/2026**. Versão de desenvolvimento **0.1.0**, sem release 
 | Recurso | Estado comprovado | Limitação |
 | --- | --- | --- |
 | `GOAT-HUB.ps1` e módulo/auxiliar locais | Implementados; Web real iniciado, HTTP/módulo verificados; pasta privada nega HTTP; testes de duplicação, porta ocupada e encerramento | Desktop/Production preparados, não iniciados: falta toolchain/binário |
-| Repositório portátil | Manifests/lockfile frontend, scripts, fontes, testes, ícone, licenças e docs presentes; instalação congelada em cópia independente sem copiar node_modules; build web e smoke em caminho com espaços | Publicação inicial autorizada em JuliozXz/GOAT-Tweaks-V2; desktop nativo ainda não homologado |
-| GitHub Actions Windows | Workflow PR/manual, permissões somente leitura, Actions fixadas por SHA, checks, bootstrap Cargo explícito e NSIS candidato sem assinatura | YAML e blocos PowerShell validados localmente; workflow nunca executado no GitHub; nenhum instalador gerado |
+| Repositório portátil | Publicado em JuliozXz/GOAT-Tweaks-V2/main; clonagem real, instalação dos 56 pacotes, checks, build e iniciador passaram em pasta com espaços | Desktop nativo ainda não homologado; veja publication-2026-10-23.md |
+| GitHub Actions Windows | Workflow publicado e reconhecido como ativo pela API GitHub; PR/manual, permissões somente leitura, Actions fixadas por SHA, checks, bootstrap Cargo explícito e NSIS candidato sem assinatura | Sem execução remota nesta entrega; nenhum instalador gerado |
 | Interface técnica | Janela Tauri normal; removidos fullscreen, sua API/permissões e monograma GH da UI; mouse/teclado, sidebar/filtros/tabelas; tokens centralizados | Logo oficial pendente; ícone técnico de build antigo ainda provisório |
 | Inventário real separado | Coletor CIM de nove seções, allowlist, fonte/tempo/qualidade, unknown/null, exportação sem sobrescrita; nenhum ajuste | Não integrado por IPC. Coleta no sandbox comum foi negada; fora dele houve dados reais, mas token herdado elevado. Usuário comum fora do sandbox não validado |
 | Inventário na interface | Importação JSON até 2 MiB, schema estrito, tabelas, remoção, erro preserva anterior; somente memória; testes unitários/E2E | Origem declarada no arquivo, sem autenticação criptográfica; não usar para aprovar execução |
@@ -46,7 +46,7 @@ Fontes completas necessárias permanecem no projeto. Auditoria histórica de ski
 
 1. Preparar Rust/Cargo MSVC, C++ Build Tools e Windows SDK na máquina de build conforme fontes oficiais, ou executar o workflow autorizado no GitHub. WebView2 deve existir no destino. Não houve instalação global nesta etapa.
 2. Gerar e revisar **Cargo.lock real**, compilar com `--locked`, testar janela/ACL/WebView2. O `-Check` atual detecta quatro ausências (Cargo, rustc, MSVC e SDK); não há binário nem instalador validado.
-3. Conferir a publicação inicial por clonagem real e registrar o commit e os resultados. Na primeira execução manual do workflow, usar bootstrap_cargo_lock somente para gerar candidato revisável. O workflow normal bloqueia lock ausente. Testar NSIS em Windows de avaliação; nenhum certificado foi configurado.
+3. Publicação inicial e clonagem real concluídas; resultados/commit em publication-2026-10-23.md. Na primeira execução manual do workflow, usar bootstrap_cargo_lock somente para gerar candidato revisável. O workflow normal bloqueia lock ausente. Testar NSIS em Windows de avaliação; nenhum certificado foi configurado.
 4. Testar coletor em PowerShell normal fora do sandbox, sem elevar automaticamente, e confirmar a logo oficial. Integrar coletor por IPC somente após backend compilável, contratos, permissões restritas e testes nativos.
 5. Expandir catálogo/schema e implementar executor de baixo risco com pré-condições, confirmação, snapshot, pós-verificação, rollback e persistência transacional antes de aprovar qualquer alteração. Retomar as prioridades concretas da matriz; não aplicar scripts de referência.
 

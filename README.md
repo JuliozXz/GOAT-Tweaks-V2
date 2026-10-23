@@ -14,11 +14,19 @@ if ($LASTEXITCODE -ne 0) { throw 'Falha no clone' }
 Set-Location -LiteralPath .\GOAT-Tweaks-V2
 pnpm.cmd install --frozen-lockfile --ignore-scripts
 if ($LASTEXITCODE -ne 0) { throw 'Falha nas dependencias' }
+.\GOAT-HUB.ps1 -Mode Web
+```
+
+O comando acima inicia o **frontend web de desenvolvimento**; abra `http://127.0.0.1:1420` no navegador e mantenha o terminal aberto. Encerre com Ctrl+C. Instalação, build web e iniciador foram validados numa clonagem real do GitHub: [relatório de publicação](docs/publication-2026-10-23.md).
+
+Para desenvolver a janela nativa, `Desktop` exige Rust/MSVC/SDK/WebView2. O build nativo ainda está bloqueado neste ambiente:
+
+```powershell
 .\GOAT-HUB.ps1 -Mode Desktop -Check
 .\GOAT-HUB.ps1 -Mode Desktop
 ```
 
-`Desktop` exige Rust/MSVC/SDK/WebView2 e pretende abrir a janela Tauri em desenvolvimento. O build nativo ainda está bloqueado neste ambiente. Para trabalhar apenas no frontend, execute **explicitamente** `.\GOAT-HUB.ps1 -Mode Web` e abra `http://127.0.0.1:1420`. Esse modo é navegador, não desktop nativo. `Production` só aceita o executável release local existente; veja o guia antes de compilar.
+`Production` só aceita o executável release local existente; veja o guia antes de compilar. Não há instalador nativo homologado nesta entrega.
 
 O repositório oficial é [JuliozXz/GOAT-Tweaks-V2](https://github.com/JuliozXz/GOAT-Tweaks-V2). O workflow [Windows](.github/workflows/windows.yml) prepara checks e instalador NSIS sem assinatura, sem publicar release. [Limitações e primeiro Cargo.lock](docs/windows-ci.md): **a execução remota ainda não foi realizada**. A publicação das fontes não certifica a compilação ou o funcionamento do desktop nativo.
 
